@@ -35,7 +35,7 @@ export default async function AllUsers() {
    console.log(users);
 
    return (
-      <div>users: {JSON.stringify(users)}</div>
+      <div>users: {users[0].username}</div>
    )
 }
 

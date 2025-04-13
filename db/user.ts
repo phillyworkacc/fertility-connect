@@ -11,9 +11,9 @@ export const UserDB = {
       return users.length > 0 ? users[0] : false;
    },
 
-   getAllUsers: async () => {
+   getAllUsers: async (): Promise<User[]> => {
       const [users]: any = await pool.query("SELECT * FROM users");
-      return users;
+      return users as User[];
    },
 
    getUser: async (email: string) => {
