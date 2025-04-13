@@ -1,4 +1,4 @@
-export const appUrl = "http://localhost:3000";
+export const appUrl = "https://fertility-connect.vercel.app";
 export const mainUserHomeUrl = appUrl + "/home";
 
 
