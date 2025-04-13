@@ -39,7 +39,9 @@ export default function SignUpForm() {
          return;
       }
 
+      console.log(formData);
       const response = await createUserAccount(formData);
+      console.log(response);
       if (response) {
          router.push(mainUserHomeUrl);
       } else {
