@@ -11,7 +11,7 @@ import { checkSubscribed, getCurrentUser } from "./actions/user";
 export default function Home() {
 	const { data: session } = useSession();
 	const router = useRouter();
-	const [userIsSubscribed, setUserIsSubscribed] = useState(false as "subbed" | "not-subbed" | false);
+	const [userIsSubscribed, setUserIsSubscribed] = useState("not-subbed" as "subbed" | "not-subbed" | false);
 
 	const checkUserIsSubscribed = async () => {
 		const user = await getCurrentUser(session?.user?.email!);
@@ -22,7 +22,7 @@ export default function Home() {
 
 	const subscribeToFCBtn = async () => {
 		const result = await subscribeToFertilityConnect();
-		if (result !== "Payment failed") {
+		if (result !== "Payment failed" && result !== "User does not exist") {
 			router.push(result);
 		} else {
 			alert(result);
@@ -33,7 +33,7 @@ export default function Home() {
 	
 	const subscribeToFCCourseBtn = async () => {
 		const result = await subscribeToFertilityConnectFullCourse();
-		if (result !== "Payment failed") {
+		if (result !== "Payment failed" && result !== "User does not exist") {
 			router.push(result);
 		} else {
 			alert(result);
@@ -42,7 +42,7 @@ export default function Home() {
 
 	const registerFertilityInstitution = async () => {
 		const result = await subscribeToRegisterClinic();
-		if (result !== "Payment failed") {
+		if (result !== "Payment failed" && result !== "User does not exist") {
 			router.push(result);
 		} else {
 			alert(result);
