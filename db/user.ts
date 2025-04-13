@@ -11,6 +11,11 @@ export const UserDB = {
       return users.length > 0 ? users[0] : false;
    },
 
+   getAllUsers: async () => {
+      const [users]: any = await pool.query("SELECT * FROM users");
+      return users;
+   },
+
    getUser: async (email: string) => {
       const [users]: any = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
       return users.length > 0 ? users[0] as User : false;
