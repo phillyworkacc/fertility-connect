@@ -1,3 +1,4 @@
+import { appUrl } from '@/utils/constants';
 import {
    Body,
    Column,
@@ -19,7 +20,7 @@ import {
    resetLink?: string;
  }
  
-const baseUrl = process.env.APP_URL || 'http://localhost:3000';
+const baseUrl = appUrl;
  
  export const ResetPasswordEmail = ({
    username,
