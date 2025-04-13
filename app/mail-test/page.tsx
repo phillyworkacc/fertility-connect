@@ -2,6 +2,7 @@
 import "@/styles/landingpage.css"
 import { useSession } from "next-auth/react"
 import React, { useState } from 'react'
+import { testServerAction } from "../actions/user";
 
 // import { UserDB } from "@/db/user"
 
@@ -21,11 +22,17 @@ export default function MailTestPage() {
       console.log(result);
    }
 
+   const testSA = async () => {
+      let result = await testServerAction();
+      alert(result);
+   }
+
    return (
       <div>
          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" />
          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-         <button onClick={sendMail}>Send Mail</button>
+         <button onClick={sendMail}>Send Mail</button><br /><br />
+         <button onClick={testSA}>Test Server Action</button>
       </div>
    )
 }

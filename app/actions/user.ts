@@ -250,3 +250,11 @@ export async function sendPurchasedFullCourseEmail (): Promise<string | boolean>
       return "Failed to send email";
    }
 }
+
+export async function testServerAction (): Promise<string> {
+   return new Promise((resolve) => {
+      setTimeout(() => {
+         resolve("Server actions work !")
+      }, 1000);
+   })
+}
