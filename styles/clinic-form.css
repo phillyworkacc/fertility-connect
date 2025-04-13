@@ -1,0 +1,45 @@
+.clinic-form {
+   width: 100%;
+   max-width: 600px;
+   height: 100vh;
+   padding: 15px;
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
+
+.selector {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   flex-wrap: wrap;
+   gap: 10px;
+   padding: 10px 0;
+   font-size: 1.4rem;
+}
+
+.selector .select-option {
+   width: fit-content;
+   padding: 5px 10px;
+   border: 1px solid #acacac;
+   border-radius: 6px;
+   background: white;
+   cursor: pointer;
+}
+
+.selector .select-option.selected {
+   background-color: #d02090;
+   color: #fff;
+   border-color: #d02090;
+}
+
+img {
+   width: 30vh;
+   aspect-ratio: 2/1;
+   object-fit: cover;
+   object-position: center;
+}
+
+input { width: 100%; }
+textarea { max-width: 600px; height: 15vh; }
+button { width: 100%; }

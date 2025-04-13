@@ -1,0 +1,41 @@
+.date-picker-container {
+   width: 30%;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+.date-picker-container .date-picker {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 5px;
+}
+
+.date-picker-container .date-picker .section {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+}
+
+.date-picker-container .date-picker .section span {
+   display: block;
+   width: 100%;
+   cursor: pointer;
+   font-size: 1.5rem;
+}
+.date-picker-container .date-picker .section span:active { scale: 0.9; }
+.date-picker-container .date-picker .section input { width: 100%; text-align: center; }
+
+.date-picker-container .full-date {
+   width: 100%;
+   font-size: 1.35rem;
+}
+
+@media screen and (max-width: 900px) {
+   .date-picker-container {
+      width: 100%;
+   }
+}

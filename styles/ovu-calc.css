@@ -1,0 +1,62 @@
+.ovu-calculator {
+   width: 100%;
+}
+
+.ovu-calculator .title {
+   width: 100%;
+   padding: 20px 0;
+   font-size: 2rem;
+   font-weight: 800;
+}
+
+.ovu-calculator .form-content {
+   width: 100%;
+   padding: 10px 0;
+   position: relative;
+}
+
+.ovu-calculator .form-content input {
+   width: 30%;
+   font-size: 1.6rem;
+   font-weight: 700;
+   position: relative;
+}
+
+.ovu-calculator .form-content.weight::after {
+   content: 'Weight (kg)';
+   position: absolute;
+   top: 35%;
+   left: 21%;
+   color: #707070;
+   font-size: 1.2rem;
+   width: fit-content;
+   height: fit-content;
+}
+
+.ovu-calculator .form-content.cycle-length::after {
+   content: 'Cycle Length (days)';
+   position: absolute;
+   top: 35%;
+   left: 15%;
+   color: #707070;
+   font-size: 1.2rem;
+   width: fit-content;
+   height: fit-content;
+}
+
+@media screen and (max-width: 900px) {
+   .ovu-calculator .form-content input {
+      width: 100%;
+   }
+
+   .ovu-calculator .form-content.cycle-length::after {
+      content: 'Cycle Length (days)';
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      color: #707070;
+      font-size: 1.2rem;
+      width: fit-content;
+      height: fit-content;
+   }
+}

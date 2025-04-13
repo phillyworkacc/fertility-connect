@@ -1,0 +1,23 @@
+.page-container section.body .ma-form-content {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: start;
+   justify-content: center;
+   text-align: left;
+   gap: 4px;
+   padding: 15px 10px;
+}
+
+.page-container section.body .ma-form-content .label {
+   width: 100%;
+   font-size: 1.4rem;
+}
+
+.page-container section.body .ma-form-content input {
+   width: 100%;
+   padding: 10px 15px;
+   font-size: 1.2rem;
+   border: 1px solid #dedede;
+   border-radius: 8px;
+}

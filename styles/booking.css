@@ -1,0 +1,29 @@
+.selector {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   gap: 10px;
+   padding: 10px 0;
+   font-size: 1.4rem;
+}
+
+.selector .select-option {
+   width: fit-content;
+   padding: 5px 10px;
+   border: 1px solid #acacac;
+   border-radius: 6px;
+   background: white;
+   cursor: pointer;
+}
+
+.selector .select-option.selected {
+   background-color: #d02090;
+   color: #fff;
+   border-color: #d02090;
+}
+
+button { max-width: fit-content; }
+@media screen and (max-width: 900px) {
+   button { max-width: 100%; }
+}

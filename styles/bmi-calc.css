@@ -1,0 +1,51 @@
+.bmi-calculator {
+   width: 100%;
+}
+
+.bmi-calculator .title {
+   width: 100%;
+   padding: 20px 0;
+   font-size: 2rem;
+   font-weight: 800;
+}
+
+.bmi-calculator .form-content {
+   width: 100%;
+   padding: 10px 0;
+   position: relative;
+}
+
+.bmi-calculator .form-content input {
+   width: 30%;
+   font-size: 1.6rem;
+   font-weight: 700;
+   position: relative;
+}
+
+.bmi-calculator .form-content.weight::after {
+   content: 'Weight (kg)';
+   position: absolute;
+   top: 35%;
+   left: 21%;
+   color: #707070;
+   font-size: 1.2rem;
+   width: fit-content;
+   height: fit-content;
+}
+
+.bmi-calculator .form-content.height::after {
+   content: 'Height (m)';
+   position: absolute;
+   top: 35%;
+   left: 21.5%;
+   color: #707070;
+   font-size: 1.2rem;
+   width: fit-content;
+   height: fit-content;
+}
+
+@media screen and (max-width: 900px) {
+   .bmi-calculator .form-content input {
+      width: 100%;
+   }
+}

@@ -1,0 +1,280 @@
+.body-container {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   align-items: start;
+   justify-content: center;
+   overflow-x: hidden;
+   overflow-y: scroll;
+}
+
+a:hover { text-decoration: none !important; }
+
+.page-container {
+   width: 100%;
+   max-width: 1200px;
+   height: fit-content;
+   min-height: 100vh;
+   padding: 20px;
+}
+
+.section-body-container {
+   width: 100%;
+   height: fit-content;
+}
+
+.page-container header {
+   width: 100%;
+   height: 20vh;
+   display: flex;
+   align-items: start;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.page-container header .greeting {
+   width: 100%;
+   font-size: 2.3rem;
+   font-weight: 700;
+   padding: 20px 0;
+}
+
+.page-container header .header-dropdown {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   flex-wrap: wrap;
+   gap: 15px;
+   font-size: 1.2rem;
+}
+
+.page-container header .header-dropdown .pages-link {
+   width: fit-content;
+   position: relative;
+   cursor: pointer;
+   transition: all 0.2s;
+}
+
+.page-container header .header-dropdown .pages-link.selected {
+   color: #14A79D;
+   font-weight: 700;
+}
+.page-container header .header-dropdown .pages-link.selected::after {
+   width: 100%;
+   background-color: #14A79D;
+}
+
+.page-container header .header-dropdown .pages-link::after {
+   width: 0%;
+   height: 3px;
+   content: '';
+   background-color: #14A79D;
+   border-radius: 5px;
+   position: absolute;
+   bottom: -7px;
+   left: 0;
+   transition: all 0.2s;
+}
+
+.page-container header .header-dropdown .pages-link:hover::after {
+   width: 100%;
+}
+
+.page-container section.body {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+}
+
+.page-container section.body .body-section {
+   width: 100%;
+   height: 40vh;
+}
+
+.page-container section.body .body-section .body-section-title {
+   width: 100%;
+   height: 10%;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   padding: 10px 0;
+   font-size: 1.6rem;
+   font-weight: 700;
+}
+
+.page-container section.body .body-section .body-section-content {
+   width: 100%;
+   height: 90%;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   gap: 10px;
+   padding: 10px 0;
+   overflow-x: scroll;
+   overflow-y: hidden;
+}
+
+.page-container section.body .body-section .body-section-content > * {
+   display: block;
+   width: 20%;
+   height: 85%;
+}
+
+@media screen and (max-width: 900px) {
+   .page-container section.body .body-section .body-section-content {
+      width: 100%;
+      overflow-x: scroll;
+   }
+
+   .page-container section.body .body-section .body-section-content::-webkit-scrollbar {
+      display: none; /* Hides scrollbar (optional) */
+   }
+
+   .page-container section.body .body-section .body-section-content > a {
+      display: block;
+      flex: 0 0 auto;
+      width: 60%;
+      height: 90%;
+   }
+
+   .page-container section.body .body-section .body-section-content > div {
+      display: block;
+      flex: 0 0 auto;
+      width: 60%;
+      height: 90%;
+   }
+}
+
+.page-container section.body .body-section .wrap-section-content {
+   width: 100%;
+   height: fit-content;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   flex-wrap: wrap;
+   gap: 10px;
+   padding: 10px 0;
+   overflow-x: scroll;
+   overflow-y: hidden;
+}
+
+.page-container section.body .body-section .wrap-section-content .course-card.sta {
+   width: 100%;
+   max-width: 250px;
+   height: 100%;
+   border: 1px solid #dedede;
+   border-radius: 8px;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   padding: 10px;
+   user-select: none;
+   position: relative;
+}
+
+.page-container section.body .body-section .wrap-section-content .sta.course-card button {
+   width: 100% !important;
+}
+
+.page-container section.body .body-section .wrap-section-content .course-card {
+   width: 100%;
+   max-width: 240px;
+   height: 100%;
+   border: 1px solid #dedede;
+   border-radius: 8px;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   padding: 10px;
+   user-select: none;
+   position: relative;
+}
+
+.page-container section.body .body-section .wrap-section-content .course-card .image {
+   width: 100%;
+   height: 70%;
+   overflow: hidden;
+}
+
+.page-container section.body .body-section .wrap-section-content .course-card .image img {
+   width: 100%;
+   aspect-ratio: 1;
+   object-fit: cover;
+   object-position: center;
+}
+
+.page-container section.body .body-section .wrap-section-content .course-card .name {
+   width: 100%;
+   font-weight: 500;
+   font-size: 1.35rem;
+   padding: 10px 0;
+}
+
+.page-container section.body .body-section .body-section-content .body-section-content-card {
+   width: 100%;
+   height: 100%;
+   border: 1px solid #dedede;
+   border-radius: 8px;
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   padding: 10px;
+   cursor: pointer;
+   user-select: none;
+   position: relative;
+}
+
+.page-container section.body .body-section .body-section-content .body-section-content-card:hover {
+   border: 1px solid #14A79D;
+   background-color: #eefffe;
+}
+
+.page-container section.body .body-section .body-section-content .body-section-content-card:active { scale: 0.94; }
+
+.page-container section.body .body-section .body-section-content .body-section-content-card .image {
+   width: 100%;
+   height: 70%;
+   overflow: hidden;
+}
+
+.page-container section.body .body-section .body-section-content .body-section-content-card .image img {
+   width: 100%;
+   aspect-ratio: 1;
+   object-fit: cover;
+   object-position: center;
+}
+.page-container section.body .body-section .body-section-content .body-section-content-card:hover img { scale: 1.2; }
+
+.page-container section.body .body-section .body-section-content .body-section-content-card .name {
+   width: 100%;
+   font-weight: 500;
+   font-size: 1.35rem;
+   padding: 10px 0;
+}
+
+.page-container section.body .body-section .body-section-content .body-section-content-card:hover .name {
+   font-weight: 700;
+}
+
+.page-container section.body .body-section .body-section-content .body-section-content-card .open-arrow-i {
+   width: 95%;
+   opacity: 0;
+   font-size: 2rem;
+   display: flex;
+   align-items: center;
+   justify-content: end;
+   transform: translateX(-10px);
+   position: absolute;
+   bottom: 10px;
+   left: 0;
+}
+
+.page-container section.body .body-section .body-section-content .body-section-content-card:hover .open-arrow-i {
+   transform: translateX(0px);
+   opacity: 1;
+}
