@@ -112,13 +112,7 @@ export default function JourneyToParahEBook() {
                            {(session?.user?.email) ? <>
                               <button onClick={buyButton}>Buy Now</button>
                            </>: <>
-                              <div className="form-content">
-                                 <input type="text" placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-                              </div>
-                              <div className="form-content">
-                                 <input type="email" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                              </div>
-                              <button onClick={buyButton}>Buy Now</button>
+                              <button onClick={() => signUp()}>Sign Up to Buy eBook</button>
                            </>}
 
                         </div>
