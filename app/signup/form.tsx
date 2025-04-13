@@ -7,9 +7,11 @@ import { mainUserHomeUrl } from "@/utils/constants";
 import { useRouter } from "next/navigation";
 import wait from "@/lib/wait";
 import { validateEmail, validatePassword } from "@/utils/validation";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function SignUpForm() {
    const [formData, setFormData] = useState({ name: "", email: "", password: "" } as SignUpFormData);
+   const [showPassword, setShowPassword] = useState(false);
    const [error, setError] = useState("");
    const [signUpLoading, setSignUpLoading] = useState(false);
    const router = useRouter();
@@ -68,7 +70,10 @@ export default function SignUpForm() {
             </div>
             <div className="form-content">
                <div className="label">Password</div>
-               <input type="password" name="password" value={formData.password} onChange={(e) => setFormData((prv) => ({ ...prv, password: e.target.value }))} />
+               <input type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={(e) => setFormData((prv) => ({ ...prv, password: e.target.value }))} />
+               <div className="password-hide-toggle" onClick={() => setShowPassword((prev) => !prev)}>
+                  {showPassword ? <Eye /> : <EyeOff />}
+               </div>
             </div>
             <div className="form-content">
                <button onClick={() => onSubmitForm()} disabled={signUpLoading}>
