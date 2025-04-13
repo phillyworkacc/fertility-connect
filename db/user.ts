@@ -3,60 +3,71 @@ import { pool } from './db';
 
 export const UserDB = {
    login: async (email: string, password: string) => {
-      const [users]: any = await pool.query(
-         "SELECT * FROM users WHERE `email` = ? AND `password` = ? LIMIT 1",
-         [ email, password ]
-      );
-      users as User[];
-      return users.length > 0 ? users[0] : false;
+     const res = await pool.query(
+       "SELECT * FROM users WHERE email = $1 AND password = $2 LIMIT 1",
+       [email, password]
+     );
+     return res.rows.length > 0 ? res.rows[0] as User : false;
    },
-
+ 
    getAllUsers: async (): Promise<User[]> => {
-      const [users]: any = await pool.query("SELECT * FROM users");
-      return users as User[];
+     const res = await pool.query("SELECT * FROM users");
+     return res.rows as User[];
    },
-
+ 
    getUser: async (email: string) => {
-      const [users]: any = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
-      return users.length > 0 ? users[0] as User : false;
+     const res = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+     return res.rows.length > 0 ? res.rows[0] as User : false;
    },
-
+ 
    getUserById: async (userid: string) => {
-      const [users]: any = await pool.query("SELECT * FROM users WHERE userid = ?", [userid]);
-      return users.length > 0 ? users[0] as User : false;
+     const res = await pool.query("SELECT * FROM users WHERE userid = $1", [userid]);
+     return res.rows.length > 0 ? res.rows[0] as User : false;
    },
-
+ 
    isSubscribed: async (userid: string) => {
-      const [users]: any = await pool.query("SELECT * FROM users WHERE userid = ?", [userid]);
-      users as User[];
-      return users[0].subscribed;
+     const res = await pool.query("SELECT subscribed FROM users WHERE userid = $1", [userid]);
+     return res.rows.length > 0 ? res.rows[0].subscribed : null;
    },
-
+ 
    insert: async (user: Omit<User, 'subscribed' | 'userid'>) => {
-      const data: any = await pool.query(
-         "INSERT INTO users (`userid`, `username`, `email`, `password`, `subscribed`, `created_at`) VALUES (?, ?, ?, ?, ?, ?); ", 
-         [ uuid.userid(), user.username, user.email, user.password, '0', user.created_at ]
-      );
-      return (data[0].affectedRows == 1);
+     const userid = uuid.userid();
+     const res = await pool.query(
+       "INSERT INTO users (userid, username, email, password, subscribed, created_at) VALUES ($1, $2, $3, $4, $5, $6)",
+       [userid, user.username, user.email, user.password, '0', user.created_at]
+     );
+     return res.rowCount === 1;
    },
-
+ 
    subscribeUser: async (userid: string) => {
-      const data: any = await pool.query("UPDATE users SET `subscribed` = ? WHERE `userid` = ?; ", ['1', userid]);
-      return (data[0].affectedRows == 1 || data[0].changedRows == 1);
+     const res = await pool.query(
+       "UPDATE users SET subscribed = $1 WHERE userid = $2",
+       ['1', userid]
+     );
+     return res.rowCount === 1;
    },
-
+ 
    changePwd: async (email: string, newPassword: string) => {
-      const data: any = await pool.query("UPDATE users SET `password` = ? WHERE `email` = ?; ", [newPassword, email]);
-      return (data[0].affectedRows == 1 || data[0].changedRows == 1);
+     const res = await pool.query(
+       "UPDATE users SET password = $1 WHERE email = $2",
+       [newPassword, email]
+     );
+     return res.rowCount === 1;
    },
-
+ 
    resetPwd: async (userid: string, newPassword: string) => {
-      const data: any = await pool.query("UPDATE users SET `password` = ? WHERE `userid` = ?; ", [newPassword, userid]);
-      return (data[0].affectedRows == 1 || data[0].changedRows == 1);
+     const res = await pool.query(
+       "UPDATE users SET password = $1 WHERE userid = $2",
+       [newPassword, userid]
+     );
+     return res.rowCount === 1;
    },
-   
+ 
    delete: async (email: string) => {
-      const data: any = await pool.query("DELETE FROM users WHERE `email` = ?; ", [email]);
-      return (data[0].affectedRows == 1);
+     const res = await pool.query(
+       "DELETE FROM users WHERE email = $1",
+       [email]
+     );
+     return res.rowCount === 1;
    }
-}
+ };
