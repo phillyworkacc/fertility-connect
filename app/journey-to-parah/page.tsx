@@ -112,7 +112,7 @@ export default function JourneyToParahEBook() {
                            {(session?.user?.email) ? <>
                               <button onClick={buyButton}>Buy Now</button>
                            </>: <>
-                              <button onClick={() => signUp()}>Sign Up to Buy eBook</button>
+                              <button onClick={() => router.push("/signup")}>Sign Up to Buy eBook</button>
                            </>}
 
                         </div>
