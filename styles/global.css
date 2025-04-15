@@ -151,6 +151,8 @@ button:disabled { opacity: 0.75; scale: 1; }
    gap: 7px;
 }
 
+[class*="text-c-"].italicise { font-style: italic; }
+
 .visible-link {
    color: #14A79D;
    text-decoration: underline !important;
