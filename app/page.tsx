@@ -106,13 +106,13 @@ export default function Home() {
 
 				<section className="register-fertility">
 					<div className="page-container-landing">
-						<div className="section-title text-c-xxl bold-800">Register Fertility Institutions on The Fertility Connect app</div>
+						<div className="section-title text-c-xxl bold-800">Register Fertility Centers on The Fertility Connect app</div>
 						<div className="content text-c-sm dfbc text-center">
 							<span>
-								You could be a fertility clinic, fertility expert, diagonistic laboratory, or other fertility related institution.
+								You could be a fertility clinic, fertility expert, diagonistic laboratory, or other fertility related centers.
 							</span>
 							<b>Click below to register for $100</b><br />
-							<button onClick={registerFertilityInstitution}>Register your Fertility Institution</button>
+							<button onClick={registerFertilityInstitution}>Register your Fertility Center</button>
 						</div>
 					</div>
 				</section>

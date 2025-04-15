@@ -84,7 +84,7 @@ export default function ClinicFormPage() {
    
                {formCompleted ? <>
                   <div className="text-c-xl bold-700">Success</div>
-                  <div className="text-c-m">Your clinic form has been submitted and will be approved within 48 hours.</div><br />
+                  <div className="text-c-m">Your fertility center form has been submitted and will be approved within 48 hours.</div><br />
                </> : <>
                   <div className="text-c-xl bold-700">Fertility Connect Form</div><br /><br />
                   <div className="text-c-m bold-600">Do not close this page, as you will not be able to access this form again.</div><br />
