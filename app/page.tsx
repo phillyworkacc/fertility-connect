@@ -127,7 +127,6 @@ export default function Home() {
 								</div>
 								<div className="details">
 									<div className="text-c-xl bold-600 name">Journey To Parah</div>
-									<div className="text-c-sm type">E Book</div>
 									<div className="text-c-l bold-700 price">$5.00</div><br />
 									<button onClick={() => router.push("/journey-to-parah")}>View E-Book</button>
 								</div>
