@@ -247,14 +247,14 @@ export default function Home() {
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
-							}}><BookText /> Tiktok</div>
+							}}><TiktokIcon color="#fff" /> Tiktok</div>
 						</Link><br />
 						<Link href='/contact-form' target="_blank">
 							<div className="text-c-sm" style={{
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
-							}}><TiktokIcon /> Contact Us Form</div>
+							}}><BookText /> Contact Us Form</div>
 						</Link>
 					</div><br /><br />
 					<div className="text-c-m">&copy; {new Date().getFullYear()} Fertility Connect. All rights reserved.</div>
