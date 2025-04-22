@@ -44,7 +44,7 @@ export async function buyEbookPayment({ name, email }: PaymentProps): Promise<st
 
 export async function subscribeToFertilityConnect(): Promise<string> {
    try {
-      const amount = 50;
+      const amount = 25;
       const session = await getServerSession(authOptions);
       if (!session) return "User does not exist";
       if (!session.user) return "User does not exist";
