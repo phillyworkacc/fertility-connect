@@ -1,7 +1,7 @@
 "use client"
 import "@/styles/landingpage.css"
 import Link from "next/link";
-import { BookText, Facebook, Instagram } from "lucide-react";
+import { BookText, Facebook, Instagram, Phone } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { subscribeToFertilityConnect, subscribeToFertilityConnectFullCourse, subscribeToRegisterClinic } from "./actions/payments";
@@ -35,6 +35,8 @@ export default function Home() {
 		const result = await subscribeToFertilityConnectFullCourse();
 		if (result !== "Payment failed" && result !== "User does not exist") {
 			router.push(result);
+		} else if (result == "User does not exist") {
+			router.push('/signup')
 		} else {
 			alert(result);
 		}
@@ -44,6 +46,8 @@ export default function Home() {
 		const result = await subscribeToRegisterClinic();
 		if (result !== "Payment failed" && result !== "User does not exist") {
 			router.push(result);
+		} else if (result == "User does not exist") {
+			router.push('/signup')
 		} else {
 			alert(result);
 		}
@@ -218,9 +222,9 @@ export default function Home() {
 			<footer>
 				<div className="page-container-landing">
 					<div>
-						<div className="text-c-xl bold-700">Contact Us (WhatsApp ONLY)</div>
-						<div className="text-c-m">+234 8077 590836</div>
-						<div className="text-c-m">+234 8023 128366</div>
+						<div className="text-c-xl bold-700">Contact Us </div>
+						<div className="text-c-m dfb"><Phone /> +234 8077 590836 (WhatsApp ONLY)</div>
+						<div className="text-c-m dfb"><Phone /> +234 8023 128366 (WhatsApp ONLY)</div>
 
 						<br /><br />
 						<Link href='https://www.instagram.com/thefertilityconnect' target="_blank">
@@ -242,7 +246,7 @@ export default function Home() {
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
-							}}><BookText /> Contact Us</div>
+							}}><BookText /> Contact Us Form</div>
 						</Link>
 					</div><br /><br />
 					<div className="text-c-m">&copy; {new Date().getFullYear()} Fertility Connect. All rights reserved.</div>
