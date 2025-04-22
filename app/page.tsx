@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { subscribeToFertilityConnect, subscribeToFertilityConnectFullCourse, subscribeToRegisterClinic } from "./actions/payments";
 import { useEffect, useState } from "react";
 import { checkSubscribed, getCurrentUser } from "./actions/user";
+import TiktokIcon from "@/components/tiktok/tiktok";
 
 export default function Home() {
 	const { data: session } = useSession();
@@ -241,12 +242,19 @@ export default function Home() {
 								gap: "8px"
 							}}><Facebook /> Facebook</div>
 						</Link><br />
+						<Link href='https://www.tiktok.com/@thefertilityconnect' target="_blank">
+							<div className="text-c-sm" style={{
+								display: "flex",
+								alignItems: "center",
+								gap: "8px"
+							}}><BookText /> Tiktok</div>
+						</Link><br />
 						<Link href='/contact-form' target="_blank">
 							<div className="text-c-sm" style={{
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
-							}}><BookText /> Contact Us Form</div>
+							}}><TiktokIcon /> Contact Us Form</div>
 						</Link>
 					</div><br /><br />
 					<div className="text-c-m">&copy; {new Date().getFullYear()} Fertility Connect. All rights reserved.</div>
