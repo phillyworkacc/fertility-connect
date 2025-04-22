@@ -223,26 +223,26 @@ export default function Home() {
 				<div className="page-container-landing">
 					<div>
 						<div className="text-c-xl bold-700">Contact Us </div>
-						<div className="text-c-m dfb"><Phone /> +234 8077 590836 (WhatsApp ONLY)</div>
-						<div className="text-c-m dfb"><Phone /> +234 8023 128366 (WhatsApp ONLY)</div>
+						<div className="text-c-sm dfb"><Phone /> +234 8077 590836</div>
+						<div className="text-c-sm dfb"><Phone /> +234 8023 128366 (WhatsApp ONLY)</div>
 
 						<br /><br />
 						<Link href='https://www.instagram.com/thefertilityconnect' target="_blank">
-							<div className="text-c-m" style={{
+							<div className="text-c-sm" style={{
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
 							}}><Instagram /> Instagram</div>
 						</Link><br />
 						<Link href='https://www.facebook.com/share/1ASC1rQprB/' target="_blank">
-							<div className="text-c-m" style={{
+							<div className="text-c-sm" style={{
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
 							}}><Facebook /> Facebook</div>
 						</Link><br />
 						<Link href='/contact-form' target="_blank">
-							<div className="text-c-m" style={{
+							<div className="text-c-sm" style={{
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
