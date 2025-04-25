@@ -1,0 +1,17 @@
+.cer {
+   width: 100%;
+}
+
+.cer .images {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+}
+
+.cer .images img {
+   width: 100%;
+   max-width: 350px;
+   object-fit: contain;
+   object-position: center;
+}

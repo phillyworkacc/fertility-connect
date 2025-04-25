@@ -92,6 +92,13 @@ export default async function Home() {
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>
+					<Link href='/common-emotional-reactions'>
+						<div className="body-section-content-card">
+							<div className="image"><img src="./assets/common-emotional-reactions-imgs/img1.jpg" alt="card-image" /></div>
+							<div className="name">Fertility Carousel</div>
+							<div className="open-arrow-i"><ArrowRight /></div>
+						</div>
+					</Link>
 				</div>
 			</div>
 
