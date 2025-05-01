@@ -58,7 +58,7 @@ export default async function LoginPage() {
                         return <div className="course-card" key={index}>
                            <div className="image"><img src="./assets/course.png" alt="course image" /></div>
                            <div className="name">{moduleName}</div>
-                           <Link href={modulePaymentLinks[index]}><button>Buy {moduleName} $25.00</button></Link>
+                           <Link href={modulePaymentLinks[index]}><button>Buy {moduleName} $15.00</button></Link>
                         </div>
                      })}
                   </div>

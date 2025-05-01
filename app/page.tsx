@@ -190,7 +190,7 @@ export default function Home() {
 							<div className="pricing-tier">
 								<div className="pricing-tier-container">
 									<div className="name text-c-s">Full App Access</div>
-									<div className="price text-c-xxl">$50</div>
+									<div className="price text-c-xxl">$25</div>
 									<span className="text-c-m">Features</span>
 									<ul className="text-c-s">
 										<li>Booking Calendar</li>
@@ -233,21 +233,21 @@ export default function Home() {
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
-							}}><Instagram /> Instagram</div>
+							}}><Instagram /> @thefertilityconnect</div>
 						</Link><br />
 						<Link href='https://www.facebook.com/share/1ASC1rQprB/' target="_blank">
 							<div className="text-c-sm" style={{
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
-							}}><Facebook /> Facebook</div>
+							}}><Facebook /> @dayoodukoya</div>
 						</Link><br />
 						<Link href='https://www.tiktok.com/@thefertilityconnect' target="_blank">
 							<div className="text-c-sm" style={{
 								display: "flex",
 								alignItems: "center",
 								gap: "8px"
-							}}><TiktokIcon color="#fff" /> Tiktok</div>
+							}}><TiktokIcon color="#fff" /> @thefertilityconnect</div>
 						</Link><br />
 						<Link href='/contact-form' target="_blank">
 							<div className="text-c-sm" style={{

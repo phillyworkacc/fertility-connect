@@ -118,7 +118,7 @@ export async function subscribeToFertilityConnectFullCourse(): Promise<string> {
 
 export async function subscribeToFertilityConnectCourseModule(module: number): Promise<string> {
    try {
-      const amount = 25;
+      const amount = 15;
       const session = await getServerSession(authOptions);
       if (!session) return "User does not exist";
       if (!session.user) return "User does not exist";

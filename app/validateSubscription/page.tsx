@@ -28,5 +28,7 @@ export default async function ValidateSubscriptionPage ({ searchParams }: { sear
       } else {
          return <CustomPage str={`Failed to subscribe ${user.username}`} />;
       }
+   } else {
+      redirect('/home')
    }
 }
