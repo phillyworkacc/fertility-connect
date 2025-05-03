@@ -223,39 +223,74 @@ export default function Home() {
 			<footer>
 				<div className="page-container-landing">
 					<div>
-						<div className="text-c-xl bold-700">Contact Us </div>
-						<div className="text-c-sm dfb"><Phone /> +234 8077 590836</div>
-						<div className="text-c-sm dfb"><Phone /> +234 8023 128366 (WhatsApp ONLY)</div>
+						<div className="footer">
+							<div className="footer-section">
+								<div className="footer-section-title">Contact Us</div>
+								<div className="footer-section-content">
+									<div className="text-c-sm dfb"><Phone /> +234 8077 590836</div>
+									<div className="text-c-sm dfb"><Phone /> +234 8023 128366 (WhatsApp ONLY)</div>
+								</div>
+							</div>
+							
+							<div className="footer-section">
+								<div className="footer-section-title">Socials</div>
+								<div className="footer-section-content">
+									<div className="socials-content">
+										<div className="name">@thefertilityconnect</div>
+										<Link href='https://www.instagram.com/thefertilityconnect' target="_blank">
+											<div className="text-c-sm" style={{
+												display: "flex",
+												alignItems: "center",
+												gap: "8px"
+											}}><Instagram /></div>
+										</Link>
+										<Link href='https://www.facebook.com/share/1ASC1rQprB/' target="_blank">
+											<div className="text-c-sm" style={{
+												display: "flex",
+												alignItems: "center",
+												gap: "8px"
+											}}><Facebook /></div>
+										</Link>
+										<Link href='https://www.tiktok.com/@thefertilityconnect' target="_blank">
+											<div className="text-c-sm" style={{
+												display: "flex",
+												alignItems: "center",
+												gap: "8px"
+											}}><TiktokIcon color="#fff" /></div>
+										</Link>
+									</div>
+								</div>
+							</div>
 
-						<br /><br />
-						<Link href='https://www.instagram.com/thefertilityconnect' target="_blank">
-							<div className="text-c-sm" style={{
-								display: "flex",
-								alignItems: "center",
-								gap: "8px"
-							}}><Instagram /> @thefertilityconnect</div>
-						</Link><br />
-						<Link href='https://www.facebook.com/share/1ASC1rQprB/' target="_blank">
-							<div className="text-c-sm" style={{
-								display: "flex",
-								alignItems: "center",
-								gap: "8px"
-							}}><Facebook /> @dayoodukoya</div>
-						</Link><br />
-						<Link href='https://www.tiktok.com/@thefertilityconnect' target="_blank">
-							<div className="text-c-sm" style={{
-								display: "flex",
-								alignItems: "center",
-								gap: "8px"
-							}}><TiktokIcon color="#fff" /> @thefertilityconnect</div>
-						</Link><br />
-						<Link href='/contact-form' target="_blank">
-							<div className="text-c-sm" style={{
-								display: "flex",
-								alignItems: "center",
-								gap: "8px"
-							}}><BookText /> Contact Us Form</div>
-						</Link>
+							
+							<div className="footer-section">
+								<div className="footer-section-title">Others</div>
+								<div className="footer-section-content">
+									<Link href='/terms-and-conditions' target="_blank">
+										<div className="text-c-s" style={{
+											display: "flex",
+											alignItems: "center",
+											gap: "8px"
+										}}>Terms and Conditions</div>
+									</Link>
+									<Link href='/privacy-policy' target="_blank">
+										<div className="text-c-s" style={{
+											display: "flex",
+											alignItems: "center",
+											gap: "8px"
+										}}>Privacy Policy</div>
+									</Link>
+									<Link href='/contact-form' target="_blank">
+										<div className="text-c-s" style={{
+											display: "flex",
+											alignItems: "center",
+											gap: "8px"
+										}}><BookText size={20} /> Contact Us Form</div>
+									</Link>
+								</div>
+							</div>
+
+						</div>
 					</div><br /><br />
 					<div className="text-c-m">&copy; {new Date().getFullYear()} Fertility Connect. All rights reserved.</div>
 				</div>

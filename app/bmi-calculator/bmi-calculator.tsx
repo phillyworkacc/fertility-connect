@@ -10,17 +10,21 @@ import BackToHome from "@/components/back-to-home/back-to-home";
 
 export default function BMICalculatorForm() {
    const { data: session } = useSession();
-   const [weight, setWeight] = useState(0)
-   const [height, setHeight] = useState(0)
+   const [weight, setWeight] = useState("0")
+   const [height, setHeight] = useState("0")
    const [results, setResults] = useState("")
    const [bmi, setBMI] = useState(0)
 
    const calculateUserBMI = () => {
-      let { bmi, category, error } = bmiCalculator(weight, height);
-      if (!error || error == undefined) {
-         setResults(category);
-         setBMI(parseFloat(bmi));
-      } else setResults(error);
+      try {
+         let { bmi, category, error } = bmiCalculator(parseFloat(weight), parseFloat(height));
+         if (!error || error == undefined) {
+            setResults(category);
+            setBMI(parseFloat(bmi));
+         } else setResults(error);
+      } catch (error) {
+         alert('Please enter a valid weight or height')
+      }
    }
 
 	return (
@@ -36,7 +40,7 @@ export default function BMICalculatorForm() {
                   name="weight" 
                   placeholder="Weight (kg)" 
                   value={weight} 
-                  onChange={(e) => setWeight(parseFloat(e.target.value || '0'))} />
+                  onChange={(e) => setWeight(e.target.value)} />
             </div>
 
             <div className="form-content height">
@@ -45,7 +49,7 @@ export default function BMICalculatorForm() {
                   name="height" 
                   placeholder="Height (m)" 
                   value={height} 
-                  onChange={(e) => setHeight(parseFloat(e.target.value || '0'))} />
+                  onChange={(e) => setHeight(e.target.value)} />
             </div>
 
             <div className="form-content">
