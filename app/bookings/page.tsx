@@ -24,7 +24,7 @@ export default async function LoginPage() {
       const isUserSubscribed = await isSubscribed(current_user.subscribed);
       let subscriptionPaymentLink = "";
       if (!isUserSubscribed) {
-         subscriptionPaymentLink = await subscribeToFertilityConnect();
+         subscriptionPaymentLink = await subscribeToFertilityConnect('/home');
       }
 
       return <>

@@ -42,7 +42,7 @@ export async function buyEbookPayment({ name, email }: PaymentProps): Promise<st
 }
 
 
-export async function subscribeToFertilityConnect(): Promise<string> {
+export async function subscribeToFertilityConnect(originUrl?: string): Promise<string> {
    try {
       const amount = 25;
       const session = await getServerSession(authOptions);
@@ -58,7 +58,7 @@ export async function subscribeToFertilityConnect(): Promise<string> {
          tx_ref: `TX-${Date.now()}`,
          amount,
          currency: 'USD',
-         redirect_url: `${appUrl}/validateSubscription`,
+         redirect_url: `${appUrl}/validateSubscription?originUrl=${appUrl}${originUrl}`,
          customer: { email, name },
          customizations: {
             title: 'Subscribe to Fertility Connect',

@@ -22,7 +22,7 @@ export default function Home() {
 	}
 
 	const subscribeToFCBtn = async () => {
-		const result = await subscribeToFertilityConnect();
+		const result = await subscribeToFertilityConnect('/');
 		if (result !== "Payment failed" && result !== "User does not exist") {
 			router.push(result);
 		} else if (result == "User does not exist") {

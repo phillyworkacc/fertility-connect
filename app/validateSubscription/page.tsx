@@ -6,8 +6,15 @@ import { getCurrentUser, sendSubscribedUserEmail } from '../actions/user';
 import { UserDB } from '@/db/user';
 import CustomPage from '@/components/custom-page/custom-page';
 
-export default async function ValidateSubscriptionPage ({ searchParams }: { searchParams: any }) {
-   const transactionId = searchParams.transaction_id;
+export default async function ValidateSubscriptionPage ({ searchParams }: { searchParams: Promise<any> }) {
+   const transactionId = (await searchParams).transaction_id;
+   const transactionStatus = (await searchParams).status;
+   const transactionOriginUrl = (await searchParams).originUrl;
+
+   if (transactionStatus == "cancelled") {
+      return <CustomPage str="The transaction was cancelled" backUrl={transactionOriginUrl} />;
+   }
+
    const verifySubscription = await verifyPayment(transactionId);
    if (verifySubscription) {
       const session = await getServerSession(authOptions);
