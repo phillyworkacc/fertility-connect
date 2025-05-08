@@ -7,6 +7,7 @@ import { buyEbookPayment, verifyPayment } from '../actions/payments';
 import { useRouter } from 'next/navigation';
 import { getFluttterwaveSearchParams } from '@/utils/getFlutterwaveSearchParams';
 import { sendJourneyToParahEbookEmail } from '../actions/user';
+import BackToHome from '@/components/back-to-home/back-to-home';
 
 export default function JourneyToParahEBook() {
 	const { data: session } = useSession();
@@ -104,6 +105,7 @@ export default function JourneyToParahEBook() {
                            <img src="./assets/ebook-cover-image.jpg" alt="e book image" />
                         </div>
                         <div className="details">
+                           <BackToHome url='/'>Back to Home</BackToHome>
                            <div className="text-c-xl bold-600 name">Journey To Parah</div>
                            <div className="text-c-l bold-700 price">$5.00</div><br />
 

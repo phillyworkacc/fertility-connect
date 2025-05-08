@@ -25,6 +25,8 @@ export default function Home() {
 		const result = await subscribeToFertilityConnect();
 		if (result !== "Payment failed" && result !== "User does not exist") {
 			router.push(result);
+		} else if (result == "User does not exist") {
+			router.push('/signup')
 		} else {
 			alert(result);
 		}
@@ -70,6 +72,7 @@ export default function Home() {
 					</div>
 				</div>
 			</header>
+
 			<main className="content">
 				<section className="hero-section">
 					<div className="page-container-landing">
@@ -105,37 +108,6 @@ export default function Home() {
 							<span>
 								She has authored a book titled "Journey to Parah," where she shared her personal experiences and those of others with various options available to tackle infertility. She is happily married, a great mother, and a homemaker.
 							</span><br />
-						</div>
-					</div>
-				</section>
-
-				<section className="register-fertility">
-					<div className="page-container-landing">
-						<div className="section-title text-c-xxl bold-800">Register Fertility Centers on The Fertility Connect app</div>
-						<div className="content text-c-sm dfbc text-center">
-							<span>
-								You could be a fertility clinic, fertility expert, diagonistic laboratory, or other fertility related centers.
-							</span>
-							<b>Click below to register for $100</b><br />
-							<button onClick={registerFertilityInstitution}>Register your Fertility Center</button>
-						</div>
-					</div>
-				</section>
-
-				<section className="e-book">
-					<div className="page-container-landing">
-						<div className="section-title text-c-xxl bold-800">Purchase our E-Book</div>
-						<div className="content">
-							<div className="e-book-container">
-								<div className="image">
-									<img src="./assets/ebook-cover-image.jpg" alt="e book image" />
-								</div>
-								<div className="details">
-									<div className="text-c-xl bold-600 name">Journey To Parah</div>
-									<div className="text-c-l bold-700 price">$5.00</div><br />
-									<button onClick={() => router.push("/journey-to-parah")}>View E-Book</button>
-								</div>
-							</div>
 						</div>
 					</div>
 				</section>
@@ -190,7 +162,7 @@ export default function Home() {
 							<div className="pricing-tier">
 								<div className="pricing-tier-container">
 									<div className="name text-c-s">Full App Access</div>
-									<div className="price text-c-xxl">$25</div>
+									<div className="price text-c-xxl">$25 / ₦37500</div>
 									<span className="text-c-m">Features</span>
 									<ul className="text-c-s">
 										<li>Booking Calendar</li>
@@ -207,7 +179,7 @@ export default function Home() {
 							<div className="pricing-tier">
 								<div className="pricing-tier-container">
 									<div className="name text-c-s">Courses</div>
-									<div className="price text-c-xxl">$100</div>
+									<div className="price text-c-xxl">$100 / ₦150000</div>
 									<span className="text-c-m">Features</span>
 									<ul className="text-c-s">
 										<li>Access courses on fertility</li>
@@ -218,8 +190,40 @@ export default function Home() {
 						</div>
 					</div>
 				</section>
+				
+				<section className="register-fertility">
+					<div className="page-container-landing">
+						<div className="section-title text-c-xxl bold-800">Register Fertility Centers on The Fertility Connect app</div>
+						<div className="content text-c-sm dfbc text-center">
+							<span>
+								You could be a fertility clinic, fertility expert, diagonistic laboratory, or other fertility related centers.
+							</span>
+							<b>Click below to register for $100</b><br />
+							<button onClick={registerFertilityInstitution}>Register your Fertility Center</button>
+						</div>
+					</div>
+				</section>
+
+				<section className="e-book">
+					<div className="page-container-landing">
+						<div className="section-title text-c-xxl bold-800">Purchase our E-Book</div>
+						<div className="content">
+							<div className="e-book-container">
+								<div className="image">
+									<img src="./assets/ebook-cover-image.jpg" alt="e book image" />
+								</div>
+								<div className="details">
+									<div className="text-c-xl bold-600 name">Journey To Parah</div>
+									<div className="text-c-l bold-700 price">$5.00 / ₦7500</div><br />
+									<button onClick={() => router.push("/journey-to-parah")}>View E-Book</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 				<br /><br /><br />
 			</main>
+
 			<footer>
 				<div className="page-container-landing">
 					<div>
@@ -229,12 +233,6 @@ export default function Home() {
 								<div className="footer-section-content">
 									<div className="text-c-sm dfb"><Phone /> +234 8077 590836</div>
 									<div className="text-c-sm dfb"><Phone /> +234 8023 128366 (WhatsApp ONLY)</div>
-								</div>
-							</div>
-							
-							<div className="footer-section">
-								<div className="footer-section-title">Socials</div>
-								<div className="footer-section-content">
 									<div className="socials-content">
 										<div className="name">@thefertilityconnect</div>
 										<Link href='https://www.instagram.com/thefertilityconnect' target="_blank">
@@ -261,7 +259,6 @@ export default function Home() {
 									</div>
 								</div>
 							</div>
-
 							
 							<div className="footer-section">
 								<div className="footer-section-title">Others</div>

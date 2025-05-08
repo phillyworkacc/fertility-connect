@@ -33,7 +33,7 @@ export default function CoursesClientSide({ courseInfo }: { courseInfo: Course }
                   return <div className="course-card" key={index}>
                      <div className="image"><img src="./assets/course.png" alt="course image" /></div>
                      <div className="name">{moduleName}</div>
-                     <button>Buy {moduleName} $15.00</button>
+                     <button>Buy {moduleName} $15.00 / ₦22500</button>
                   </div>
                })}
             </div>

@@ -46,7 +46,7 @@ export default async function LoginPage() {
                      <div className="sta course-card">
                         <div className="image"><img src="./assets/course.png" alt="course image" /></div>
                         <div className="name">Full Fertility Connect Course</div>
-                        <Link href={buyFullCourseLink}><button>Buy $100.00</button></Link>
+                        <Link href={buyFullCourseLink}><button>Buy $100.00 / ₦150000</button></Link>
                      </div>
                   </div>
                </div><br /><br /><br /><br /><br /><br />
@@ -58,7 +58,7 @@ export default async function LoginPage() {
                         return <div className="course-card" key={index}>
                            <div className="image"><img src="./assets/course.png" alt="course image" /></div>
                            <div className="name">{moduleName}</div>
-                           <Link href={modulePaymentLinks[index]}><button>Buy {moduleName} $15.00</button></Link>
+                           <Link href={modulePaymentLinks[index]}><button>Buy {moduleName} $15.00 / ₦22500</button></Link>
                         </div>
                      })}
                   </div>
