@@ -48,7 +48,7 @@ export default async function Home() {
 			
 			{(isUserSubscribed) ? <>
 				<div className="body-section">
-					<div className="body-section-title">Everyday Tips</div>
+					<div className="body-section-title">Fertility Tools</div>
 					<div className="body-section-content">
 						<Link href='/fertility-tips'>							
 							<div className="body-section-content-card">
