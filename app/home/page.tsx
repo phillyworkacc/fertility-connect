@@ -19,10 +19,10 @@ export default async function Home() {
 		redirect("/login");
 	}
 	const isUserSubscribed = await isSubscribed(user.subscribed);
-	let subscriptionPaymentLink = "";
-	if (!isUserSubscribed) {
-		subscriptionPaymentLink = await subscribeToFertilityConnect();
-	}
+	// let subscriptionPaymentLink = "";
+	// if (!isUserSubscribed) {
+	// 	subscriptionPaymentLink = await subscribeToFertilityConnect();
+	// }
 
 	return (
 		<AppWrapper username={session?.user?.name || 'No Session'} page="home">
@@ -104,7 +104,7 @@ export default async function Home() {
 
 			{(!isUserSubscribed) ? <>
 				<div className="text-c-l">Subscribe Now to get exclusive access to fertility tips, diet tips, lifestyle tips and more</div>
-				<Link href={subscriptionPaymentLink}><button>Subscribe Now</button></Link>
+				<Link href={'/pricing'}><button>Subscribe Now</button></Link>
 			</> : <></>}
 		</AppWrapper>
 	)

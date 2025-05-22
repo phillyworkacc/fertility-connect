@@ -1,7 +1,6 @@
 "use client"
-import { reverseString } from '@/utils/string';
-import React, { useState } from 'react'
 import "@/styles/auth.css"
+import { useEffect, useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react';
 import wait from '@/lib/wait';
 import { resetUserPassword } from '@/app/actions/user';
@@ -17,8 +16,12 @@ export default function ResetPasswordPage() {
    const [btnLoading, setBtnLoading] = useState(false)
    const [error, setError] = useState("")
 
-   let url = window.location.href.split("/");
-   let userIdReversed = window.location.href.split("/")[url.length-1];
+   const [userIdReversed, setUserIdReversed] = useState("")
+
+   useEffect(() => {
+      let url = window.location.href.split("/");
+      setUserIdReversed(window.location.href.split("/")[url.length-1]);
+   }, [])
 
    const onSubmitForm = async () => {
       setError("");

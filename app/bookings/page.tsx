@@ -22,10 +22,10 @@ export default async function LoginPage() {
       signOut();
    } else {
       const isUserSubscribed = await isSubscribed(current_user.subscribed);
-      let subscriptionPaymentLink = "";
-      if (!isUserSubscribed) {
-         subscriptionPaymentLink = await subscribeToFertilityConnect('/home');
-      }
+      // let subscriptionPaymentLink = "";
+      // if (!isUserSubscribed) {
+      //    subscriptionPaymentLink = await subscribeToFertilityConnect('/home');
+      // }
 
       return <>
          <AppWrapper username={session.user?.name!} page="bookings">
@@ -34,7 +34,7 @@ export default async function LoginPage() {
                   <BookingsClientSide />
                </> : <>
                   <div className="text-c-m bold-700">You don't have access to any bookings <br /> Subscribe to Fertility Connect to continue</div><br />
-                  <Link href={subscriptionPaymentLink}><button>Subscribe</button></Link>
+                  <Link href={'/pricing'}><button>Subscribe</button></Link>
                </>}
             </div>
          </AppWrapper>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { BookText, Facebook, Instagram, Phone } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { subscribeToFertilityConnect, subscribeToFertilityConnectFullCourse, subscribeToRegisterClinic } from "./actions/payments";
+import { subscribeToRegisterClinic } from "./actions/payments";
 import { useEffect, useState } from "react";
 import { checkSubscribed, getCurrentUser } from "./actions/user";
 import TiktokIcon from "@/components/tiktok/tiktok";
@@ -12,7 +12,7 @@ import TiktokIcon from "@/components/tiktok/tiktok";
 export default function Home() {
 	const { data: session } = useSession();
 	const router = useRouter();
-	const [userIsSubscribed, setUserIsSubscribed] = useState("not-subbed" as "subbed" | "not-subbed" | false);
+	const [userIsSubscribed, setUserIsSubscribed] = useState(false as "subbed" | "not-subbed" | false);
 
 	const checkUserIsSubscribed = async () => {
 		const user = await getCurrentUser(session?.user?.email!);
@@ -21,29 +21,7 @@ export default function Home() {
 		setUserIsSubscribed(isSubscribed ? "subbed" : "not-subbed");
 	}
 
-	const subscribeToFCBtn = async () => {
-		const result = await subscribeToFertilityConnect('/');
-		if (result !== "Payment failed" && result !== "User does not exist") {
-			router.push(result);
-		} else if (result == "User does not exist") {
-			router.push('/signup')
-		} else {
-			alert(result);
-		}
-	}
-
 	useEffect(() => { checkUserIsSubscribed(); }, [])
-	
-	const subscribeToFCCourseBtn = async () => {
-		const result = await subscribeToFertilityConnectFullCourse();
-		if (result !== "Payment failed" && result !== "User does not exist") {
-			router.push(result);
-		} else if (result == "User does not exist") {
-			router.push('/signup')
-		} else {
-			alert(result);
-		}
-	}
 
 	const registerFertilityInstitution = async () => {
 		const result = await subscribeToRegisterClinic();
@@ -60,8 +38,8 @@ export default function Home() {
 		<div className="landing-page">
 			<header className="landing">
 				<div className="page-container-landing">
-					<div className="logo">
-						<img src="./logo.landing.png" alt="logo" />
+					<div className="logo" onClick={() => router.push("/")}>
+						<img src="./landing.logo.png" alt="logo" />
 					</div>
 					<div className="actions">
 						{session ? <>
@@ -172,20 +150,21 @@ export default function Home() {
 										<li>Diet Tips</li>
 									</ul>
 								</div>
-								{(userIsSubscribed == "not-subbed") && <button onClick={subscribeToFCBtn}>Subscribe</button>}
+								{(userIsSubscribed == "not-subbed") && <button onClick={() => router.push('/pricing')}>Subscribe</button>}
 								{(userIsSubscribed == "subbed") && <button onClick={() => router.push('/home')}>Go to Home</button>}
+								{(!userIsSubscribed) && <button disabled>Loading...</button>}
 							</div>
 
 							<div className="pricing-tier">
 								<div className="pricing-tier-container">
-									<div className="name text-c-s">Courses</div>
-									<div className="price text-c-xxl">$100 / ₦150000</div>
+									<div className="name text-c-s">Fertility Roadmaps</div>
+									<div className="price text-c-xxl">$25 / ₦37500</div>
 									<span className="text-c-m">Features</span>
 									<ul className="text-c-s">
-										<li>Access courses on fertility</li>
+										<li>From conception to parenthood</li>
 									</ul>
 								</div>
-								<button onClick={subscribeToFCCourseBtn}>Subscribe</button>
+								<button onClick={() => router.push('/pricing')}>Subscribe</button>
 							</div>
 						</div>
 					</div>
@@ -198,7 +177,7 @@ export default function Home() {
 							<span>
 								You could be a fertility clinic, fertility expert, diagonistic laboratory, or other fertility related centers.
 							</span>
-							<b>Click below to register for $100</b><br />
+							<b>Click below to register for $100 / ₦150000</b><br />
 							<button onClick={registerFertilityInstitution}>Register your Fertility Center</button>
 						</div>
 					</div>

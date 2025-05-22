@@ -54,7 +54,7 @@ export default function JourneyToParahEBook() {
 		<div className="landing-page">
 			<header className="landing">
 				<div className="page-container-landing">
-					<div className="logo">
+					<div className="logo" onClick={() => router.push("/")}>
 						<img src="./logo.landing.png" alt="logo" />
 					</div>
 					<div className="actions">

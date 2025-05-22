@@ -14,6 +14,9 @@ export default function AppWrapper({
       <div className="body-container">
 			<div className="page-container">
             <header>
+               <div className="logo">
+                  <img src="./logo.png" alt="logo" />
+               </div>
                <div className="greeting">Hello {username}</div>
                <div className="header-dropdown">
                   <Link href="/home" className={`pages-link ${page == "home" ? "selected" : ""}`}>Home</Link>
