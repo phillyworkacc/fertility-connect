@@ -92,6 +92,13 @@ export default async function Home() {
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>
+					<Link href='/community'>
+						<div className="body-section-content-card">
+							<div className="image"><img src="./logo.png" alt="card-image" /></div>
+							<div className="name">FertilityConnect Community</div>
+							<div className="open-arrow-i"><ArrowRight /></div>
+						</div>
+					</Link>
 					<Link href='/fertility-clinics'>
 						<div className="body-section-content-card">
 							<div className="image"><img src="./assets/clinic-logo.png" alt="card-image" /></div>

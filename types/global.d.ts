@@ -85,3 +85,35 @@ type Course = {
    modules: string;
    date: string;
 }
+
+type Post = {
+   postid: string;
+   message: string;
+   userid: string;
+   date: string;
+}
+
+type Reply = {
+   postid: string;
+   replyid: string;
+   message: string;
+   userid: string;
+   date: string;
+}
+
+type CommunityPost = {
+   postid: string;
+   message: string;
+   username: string;
+   isSubscribed: boolean;
+   date: string;
+   replies: CommunityReply[];
+}
+
+type CommunityReply = {
+   replyid: string;
+   message: string;
+   username: string;
+   isSubscribed: boolean;
+   date: string;
+}

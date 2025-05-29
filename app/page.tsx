@@ -52,23 +52,6 @@ export default function Home() {
 			</header>
 
 			<main className="content">
-				<section className="hero-section">
-					<div className="page-container-landing">
-						<div className="left-side">
-							<div className="hero-image">
-								<img src="./assets/hero-image.jpg" alt="hero image" />
-								<div className="text-c-l bold-800">'Dayo Odukoya FCA</div>
-							</div>
-						</div>
-						<div className="right-side">
-							<div className="main-text text-c-b bold-800">Empowering Your Fertility Journey</div>
-							<div className="secondary-text text-c-m">Track your cycle, understand your body, and take control of your fertility journey with consultations from experts.</div><br />
-							<div className="cta">
-								<Link href={session ? '/home' : '/signup'}><button>Get Started</button></Link>
-							</div>
-						</div>
-					</div>
-				</section>
 
 				<section className="about-us">
 					<div className="page-container-landing">
@@ -86,6 +69,24 @@ export default function Home() {
 							<span>
 								She has authored a book titled "Journey to Parah," where she shared her personal experiences and those of others with various options available to tackle infertility. She is happily married, a great mother, and a homemaker.
 							</span><br />
+						</div>
+					</div>
+				</section>
+				
+				<section className="hero-section">
+					<div className="page-container-landing">
+						<div className="left-side">
+							<div className="hero-image">
+								<img src="./assets/hero-image.jpg" alt="hero image" />
+								<div className="text-c-l bold-800">'Dayo Odukoya FCA</div>
+							</div>
+						</div>
+						<div className="right-side">
+							<div className="main-text text-c-b bold-800">Empowering Your Fertility Journey</div>
+							<div className="secondary-text text-c-m">Track your cycle, understand your body, and take control of your fertility journey with consultations from experts.</div><br />
+							<div className="cta">
+								<Link href={session ? '/home' : '/signup'}><button>Get Started</button></Link>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -210,8 +211,8 @@ export default function Home() {
 							<div className="footer-section">
 								<div className="footer-section-title">Contact Us</div>
 								<div className="footer-section-content">
-									<div className="text-c-sm dfb"><Phone /> +234 8077 590836</div>
-									<div className="text-c-sm dfb"><Phone /> +234 8023 128366 (WhatsApp ONLY)</div>
+									<div className="text-c-sm dfb"><Phone /> +234 807 759 0836</div>
+									<div className="text-c-sm dfb"><Phone /> +234 802 312 8366 (WhatsApp ONLY)</div>
 									<div className="socials-content">
 										<div className="name">@thefertilityconnect</div>
 										<Link href='https://www.instagram.com/thefertilityconnect' target="_blank">

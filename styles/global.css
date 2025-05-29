@@ -49,6 +49,7 @@ input {
    font-family: 'Myriad Pro Regular';
 }
 input:focus { border: 1px solid #414141; }
+input.full { width: 100%; }
 
 input[type="number"] { appearance: textfield; -moz-appearance: textfield; /* Firefox */ }
 input[type="number"]::-webkit-inner-spin-button,
@@ -130,8 +131,17 @@ button:disabled { opacity: 0.75; scale: 1; }
 [class*="text-c-"].bold-800 { font-weight: 800; }
 [class*="text-c-"].bold-900 { font-weight: 900; }
 
+[class*="text-c-"].pd-1 { padding: 10px 0; }
+[class*="text-c-"].pd-2 { padding: 20px 0; }
+[class*="text-c-"].pd-3 { padding: 30px 0; }
+[class*="text-c-"].pd-4 { padding: 40px 0; }
+[class*="text-c-"].pd-5 { padding: 50px 0; }
+[class*="text-c-"].pd-6 { padding: 60px 0; }
+[class*="text-c-"].pd-7 { padding: 70px 0; }
+
 [class*="text-c-"].error { color: #ff2d2d; }
 [class*="text-c-"].text-center { text-align: center; }
+[class*="text-c-"].full { width: 100%; }
 
 .mc { color: #d02090; }
 .sc { color: #14A79D; }
