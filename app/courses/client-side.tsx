@@ -9,7 +9,7 @@ export default function CoursesClientSide({ courseInfo }: { courseInfo: Course }
 
    return (<>
       <div className="body-section">
-         <div className="body-section-title">Your Course Modules</div>
+         <div className="body-section-title">Your Fertility Roadmap Modules</div>
          <div className="body-section-content">
             {modules.map((moduleName, index) => {
                return <Link href={`/course-${moduleName.toLowerCase().replace(" ", "-")}`} key={index}>
@@ -25,7 +25,7 @@ export default function CoursesClientSide({ courseInfo }: { courseInfo: Course }
 
       {(mainModules.filter((courseModule) => !modules.includes(courseModule)).length > 0) ? (<>
          <div className="body-section">
-            <div className="body-section-title">Buy Other Course Modules</div>
+            <div className="body-section-title">Buy Other Fertility Roadmap Modules</div>
             <div className="wrap-section-content">
                {mainModules.filter((courseModule) => {
                   return !modules.includes(courseModule);

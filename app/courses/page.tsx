@@ -37,11 +37,11 @@ export default async function LoginPage() {
                <CoursesClientSide courseInfo={isCourseOwnerRes} />
             </> : <>
                <div className="text-c-sm bold-600">
-                  You don't have access to any courses <br /> Buy the Fertility Connect Courses to continue
+                  You don't have access to any Fertility Roadmap modules <br /> Buy the Fertility Connect Roadmap to continue
                </div>
 
                <div className="body-section">
-                  <div className="body-section-title">Buy Full Course</div>
+                  <div className="body-section-title">Buy Full Fertility Roadmap</div>
                   <div className="wrap-section-content">
                      <div className="sta course-card">
                         <div className="image"><img src="./assets/course.png" alt="course image" /></div>

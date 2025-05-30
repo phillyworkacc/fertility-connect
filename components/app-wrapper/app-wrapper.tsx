@@ -21,7 +21,7 @@ export default function AppWrapper({
                <div className="header-dropdown">
                   <Link href="/home" className={`pages-link ${page == "home" ? "selected" : ""}`}>Home</Link>
                   <Link href="/bookings" className={`pages-link ${page == "bookings" ? "selected" : ""}`}>Bookings</Link>
-                  <Link href="/courses" className={`pages-link ${page == "courses" ? "selected" : ""}`}>Courses</Link>
+                  <Link href="/courses" className={`pages-link ${page == "courses" ? "selected" : ""}`}>Fertility Roadmap</Link>
                   <Link href="/my-account" className={`pages-link ${page == "my-account" ? "selected" : ""}`}>My Account</Link>
                </div>
             </header>
