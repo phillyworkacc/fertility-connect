@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 import { verifyPayment } from '../actions/payments'
 
 export default function ClinicFormPage() {
-   const clinicTypes: any[] = ["Fertility Clinics", "Fertility Expert", "Diagosnistic Laboratory", "Other"]
+   const clinicTypes: any[] = ["Fertility Clinics", "Fertility Expert", "Diagnostic Laboratory", "Other"]
    const [name, setName] = useState("")
    const [type, setType] = useState("Fertility Clinic" as ClinicType)
    const [email, setEmail] = useState("")
@@ -30,7 +30,8 @@ export default function ClinicFormPage() {
       const res = await insertClinic({ 
          name, email, telephone, address, type,
          date: `${Date.now()}`,
-         website, instagram, facebook, tiktok
+         website, instagram, facebook, tiktok,
+         clinic_code: `${crypto.randomUUID().replaceAll("-","")}`
       });
       if (res) {
          let sendMail = await sendFertilityInstitutionFormConfirmationEmail(name, email);

@@ -13,7 +13,7 @@ export default function AdminClinic({ clinic }: { clinic: Clinic }) {
    const approveClinicBtn = async () => {
       const result = await approveClinic(clinicId);
       if (result) {
-         let sendMail = await sendFertilityInstitutionApprovalEmail(name, email);
+         let sendMail = await sendFertilityInstitutionApprovalEmail(name, email, clinic.clinic_code);
          if (sendMail) {
             alert('Clinic Approved');
          } else {
@@ -48,7 +48,7 @@ export default function AdminClinic({ clinic }: { clinic: Clinic }) {
             {(website) ? <>
                <br />
                <div className="website text-c-m">
-                  Website: <Link href={website}>Click here</Link>
+                  Website: <Link href={website} target="_blank" className="visible-link sc">Click here</Link>
                </div><br /><br />
             </> : <><br /></>}
             

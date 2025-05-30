@@ -43,6 +43,13 @@ export default async function Home() {
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>
+					{isUserSubscribed && <Link href='/ovulation-tracker'>
+						<div className="body-section-content-card">
+							<div className="image"><img src="./assets/ovulation-calc.png" alt="card-image" /></div>
+							<div className="name">Ovulation Tracker</div>
+							<div className="open-arrow-i"><ArrowRight /></div>
+						</div>
+					</Link>}
 				</div>
 			</div>
 			
@@ -102,7 +109,7 @@ export default async function Home() {
 					<Link href='/fertility-clinics'>
 						<div className="body-section-content-card">
 							<div className="image"><img src="./assets/clinic-logo.png" alt="card-image" /></div>
-							<div className="name">Fertility Clinics</div>
+							<div className="name">Fertility Clinics and Institutions</div>
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>

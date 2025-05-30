@@ -46,6 +46,7 @@ type Clinic = {
    tiktok: string;
    date_joined: string;
    approved: boolean;
+   clinic_code: string;
 }
 
 type AddClinicParams = {
@@ -59,6 +60,7 @@ type AddClinicParams = {
    instagram?: string;
    facebook?: string;
    tiktok?: string;
+   clinic_code: string;
 }
 
 type BookingStatus = "pending" | "cancelled" | "completed"

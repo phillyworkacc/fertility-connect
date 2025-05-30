@@ -2,6 +2,7 @@
 import { ClinicsDB } from "@/db/clinics";
 import FertilityInstitutionApprovedEmail from "@/emails/fertilityInstitutionApproved";
 import FertilityInstitutionFormEmail from "@/emails/fertilityInstitutionForm";
+import crypto from "crypto"
 import { render } from "@react-email/components";
 import { Resend } from "resend"
 
@@ -19,6 +20,24 @@ export async function getApprovedClinics () {
 export async function insertClinic (addClinicParams: AddClinicParams) {
    try {
       const res = await ClinicsDB.addClinic(addClinicParams);
+      return res;
+   } catch (err) {
+      return false;
+   }
+}
+
+export async function updateClinic (addClinicParams: AddClinicParams) {
+   try {
+      const res = await ClinicsDB.updateClinic(addClinicParams);
+      return res;
+   } catch (err) {
+      return false;
+   }
+}
+
+export async function getClinicFromCode (clinicCode: string) {
+   try {
+      const res = await ClinicsDB.getClinicFromCode(clinicCode);
       return res;
    } catch (err) {
       return false;
@@ -47,14 +66,14 @@ export async function sendFertilityInstitutionFormConfirmationEmail (name: strin
 }
 
 
-export async function sendFertilityInstitutionApprovalEmail (name: string, email: string) {
+export async function sendFertilityInstitutionApprovalEmail (name: string, email: string, clinicCode: string) {
    try {
-      const emailBody = await render(FertilityInstitutionApprovedEmail({ name }))
+      const emailBody = await render(FertilityInstitutionApprovedEmail({ name, clinicCode }))
    
       const { data, error } = await resend.emails.send({
          from: "Fertility Connect <fertilityconnect@thefertilityconnect.com>",
          to: [email],
-         subject: "Thank You for Registering — Review in Progress",
+         subject: "Thank You for Registering — Approval",
          html: emailBody
       })
    

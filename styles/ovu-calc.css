@@ -44,6 +44,17 @@
    height: fit-content;
 }
 
+.ovu-calculator .form-content.period-length::after {
+   content: 'Period Length (days)';
+   position: absolute;
+   top: 35%;
+   left: 15%;
+   color: #707070;
+   font-size: 1.2rem;
+   width: fit-content;
+   height: fit-content;
+}
+
 @media screen and (max-width: 900px) {
    .ovu-calculator .form-content input {
       width: 100%;
@@ -59,4 +70,90 @@
       width: fit-content;
       height: fit-content;
    }
+
+   .ovu-calculator .form-content.period-length::after {
+      content: 'Period Length (days)';
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      color: #707070;
+      font-size: 1.2rem;
+      width: fit-content;
+      height: fit-content;
+   }
+}
+
+
+.calendar {
+   display: grid;
+   grid-template-columns: repeat(7, 1fr);
+   gap: 0.5rem;
+   padding: 1rem;
+   background-color: white;
+   border-radius: 0.5rem;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.day-name {
+   font-weight: bold;
+   text-align: center;
+}
+
+.calendar-day {
+   height: 4rem;
+   width: 100%;
+   border: 1px solid #ddd;
+   border-radius: 0.375rem;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+.labels {
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   gap: 20px;
+   padding: 1rem;
+   margin-top: 1rem;
+   background-color: white;
+   border-radius: 0.5rem;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.labels .color-id {
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   gap: 5px;
+}
+
+.labels .color-id .color {
+   height: 100%;
+   aspect-ratio: 1;
+   border-radius: 5px;
+   padding: 0.5rem;
+}
+
+.period {
+   background-color: #fca5a5;
+}
+
+.fertile {
+   background-color: #86efac;
+}
+
+.ovulation {
+   background-color: #93c5fd;
+}
+
+.day-number {
+   font-weight: bold;
+   font-size: 1.3rem;
+}
+
+.month-label {
+   font-size: 0.9rem;
+   color: #696969;
 }

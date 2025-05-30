@@ -31,7 +31,7 @@ export default function Clinic({ clinic }: { clinic: Clinic }) {
 
             {(website) ? <>
                <div className="address text-c-m">
-                  Website: <Link href={website}>Click here</Link>
+                  Website: <Link href={website} target="_blank" className="visible-link sc">Click here</Link>
                </div><br /><br />
             </> : <><br /></>}
 

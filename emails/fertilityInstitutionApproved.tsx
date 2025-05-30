@@ -16,12 +16,13 @@ import {
  
  interface FertilityInstitutionApprovedEmailProps {
    name: string;
+   clinicCode: string;
  }
  
 const baseUrl = appUrl;
  
  export const FertilityInstitutionApprovedEmail = ({
-   name
+   name, clinicCode
  }: FertilityInstitutionApprovedEmailProps) => {
  
    return (
@@ -44,6 +45,8 @@ const baseUrl = appUrl;
              <Text style={paragraph}>Hi {name},</Text>
              <Text style={paragraph}>We're happy to let you know that your fertility institution has been approved and is now officially listed on the Fertility Connect App !</Text>
              <Text style={paragraph}>Your fertility institution is now visible to users who are exploring fertility options and seeking trusted care. Thank you for partnering with us to make quality fertility support more accessible.</Text>
+             <Text style={paragraph}>If you want to manage and update details about your fertility clinic <Link href={`${appUrl}/clinic-manager`}>click here</Link>.</Text>
+             <Text style={paragraph}>This is your clinic code <b>(do not share this with anyone)</b>: {clinicCode}.</Text>
              <Text style={paragraph}>If you have any questions or need support, don't hesitate to reach out at <Link href={`${appUrl}/contact-form`}>our contact form</Link>.</Text>
              <Text style={paragraph}>
                Best Regards,
