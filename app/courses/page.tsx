@@ -45,7 +45,7 @@ export default async function LoginPage() {
                   <div className="wrap-section-content">
                      <div className="sta course-card">
                         <div className="image"><img src="./assets/course.png" alt="course image" /></div>
-                        <div className="name">Full Fertility Connect Course</div>
+                        <div className="name">Full Fertility Connect Roadmap</div>
                         <Link href={buyFullCourseLink}><button>Buy $100.00 / ₦150000</button></Link>
                      </div>
                   </div>
