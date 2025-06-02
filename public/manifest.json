@@ -1,0 +1,20 @@
+{
+   "name": "Fertility Connect",
+   "short_name": "Fertility Connect",
+   "description": "Empowering Your Fertility Journey - Track your cycle, understand your body, and take control of your fertility journey with consultations from experts.",
+   "background_color": "#ffffff",
+   "theme_color": "#ffffff",
+   "icons": [
+      {
+         "src": "/favicon.logo.png",
+         "sizes": "192x192",
+         "type": "image/png"
+      }
+   ],
+   "start_url": "/home",
+   "display": "standalone",
+   "orientation": "portrait",
+   "lang": "en",
+   "dir": "ltr",
+   "categories": ["productivity"]
+}
