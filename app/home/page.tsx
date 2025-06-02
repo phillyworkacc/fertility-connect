@@ -117,6 +117,8 @@ export default async function Home() {
 				<div className="text-c-l">Subscribe Now to get exclusive access to fertility tips, diet tips, lifestyle tips and more</div>
 				<Link href={'/pricing'}><button>Subscribe Now</button></Link>
 			</> : <></>}
+
+			<br /><br /><br /><br />
 		</AppWrapper>
 	)
 }
