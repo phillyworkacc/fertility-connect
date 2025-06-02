@@ -7,7 +7,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import isSubscribed from "@/utils/checkSubscription";
 import { getCurrentUser } from "../actions/user";
-import { subscribeToFertilityConnect } from "../actions/payments";
+import IosInstall from "./IosInstall";
 
 export default async function Home() {
 	const session = await getServerSession(authOptions);
@@ -18,11 +18,7 @@ export default async function Home() {
 	if (user == false) {
 		redirect("/login");
 	}
-	const isUserSubscribed = await isSubscribed(user.subscribed);
-	// let subscriptionPaymentLink = "";
-	// if (!isUserSubscribed) {
-	// 	subscriptionPaymentLink = await subscribeToFertilityConnect();
-	// }
+	const isUserSubscribed = isSubscribed(user.subscribed);
 
 	return (
 		<AppWrapper username={session?.user?.name || 'No Session'} page="home">
@@ -113,6 +109,7 @@ export default async function Home() {
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>
+					<IosInstall />
 				</div>
 			</div>
 
