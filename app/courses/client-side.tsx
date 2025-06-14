@@ -12,7 +12,7 @@ export default function CoursesClientSide({ courseInfo }: { courseInfo: Course }
          <div className="body-section-title">Your Fertility Roadmap Modules</div>
          <div className="body-section-content">
             {modules.map((moduleName, index) => {
-               return <Link href={`/course-${moduleName.toLowerCase().replace(" ", "-")}`} key={index}>
+               return <Link href={`/roadmap/${moduleName.split(" ")[1]}`} key={index}>
                   <div className="body-section-content-card">
                      <div className="image"><img src="./assets/course.png" alt="course image" /></div>
                      <div className="name">{moduleName}</div>
