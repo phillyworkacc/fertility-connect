@@ -22,6 +22,7 @@ export default async function Home() {
 
 	return (
 		<AppWrapper username={session?.user?.name || 'No Session'} page="home">
+			<div className="text-c-s" />
 			<div className="body-section">
 				<div className="body-section-title">My Tools</div>
 				<div className="body-section-content">

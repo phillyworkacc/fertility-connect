@@ -40,13 +40,16 @@ export default function AccountPageClient({ isAdmin }: { isAdmin: boolean }) {
       <AppWrapper username={session?.user?.name!} page="my-account">
          {loadingAction !== "" ? <LoadingAction actionText={loadingAction} /> : <></>}
 
-         <div>
+         <br />
+
+         <div className="ma-card">
+            <div className="text-c-xl bold-900">Account Info</div>
             <div className="text-c-m">{session?.user?.name}</div>
             <div className="text-c-m">{session?.user?.email}</div>
          </div>
 
          {isAdmin ? <>
-            <div>
+            <div className="ma-card">
                <div className="text-c-xl bold-900">Admin Account</div>
                <div className="ma-form-content">
                   <button onClick={() => router.push("/admin-page")}><UserRoundCog /> Go to Admin Dashboard</button>
@@ -54,7 +57,7 @@ export default function AccountPageClient({ isAdmin }: { isAdmin: boolean }) {
             </div>  
          </> : <></>}
          
-         <div>
+         <div className="ma-card">
             <div className="text-c-xl bold-900">Change your password</div>
             <div className="ma-form-content">
                <div className="label">For security reasons, we recommend updating your password periodically.</div>
@@ -62,7 +65,7 @@ export default function AccountPageClient({ isAdmin }: { isAdmin: boolean }) {
             </div>
          </div>
 
-         <div>
+         <div className="ma-card">
             <div className="text-c-xl bold-900">My Account Security</div>
             <div className="ma-form-content">
                <button onClick={() => signOut()}><LogOut /> Sign Out</button>

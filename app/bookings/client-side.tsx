@@ -131,6 +131,7 @@ export default function BookingsClientSide() {
 
    return (
       <>
+         <br />
          <div className="selector">
             <div 
                className={`select-option ${tabs == "bookings" ? "selected" : ""}`}
@@ -140,7 +141,7 @@ export default function BookingsClientSide() {
                className={`select-option ${tabs == "form" ? "selected" : ""}`}
                onClick={() => setTabs("form")}
             >Book a consultation</div>
-         </div><br /><br />
+         </div><br />
 
          {(tabs == "bookings") ? <>
             {(bookings.length > 0) ? <>
@@ -152,7 +153,7 @@ export default function BookingsClientSide() {
             </>}
          </> : <>
             {(confirmBookingForm) ? <>
-               <div className="text-c-l bold-700">Confirm your booking</div>
+               <div className="text-c-l bold-700 pd-1">Confirm your booking</div>
                <div className="text-c-sm"><b>Date:</b> {dateChosen}</div>
                <div className="text-c-sm"><b>Time Slot:</b> {timeSlot}</div><br />
 
@@ -162,7 +163,7 @@ export default function BookingsClientSide() {
                   <button onClick={fullfuilSendBookingForm} disabled={buttonLoading2}>{buttonLoading2 ? "Loading..." : "Confirm Booking"}</button>
                </div>
             </> : <>
-               <div className="text-c-m bold-700">Choose a Date</div>
+               <div className="text-c-m bold-700 pd-1">Choose a Date</div>
                <BookingCalendar onChange={(date: string, rawDate: Date) => {
                   console.log(`date: ${date}, rawUtc: ${rawDate.toUTCString()}`)
                   setDateChosen(date);
@@ -170,7 +171,7 @@ export default function BookingsClientSide() {
                }} /><br /><br />
                
                <div className="text-c-m bold-700">Choose a Time</div>
-               <div className="text-c-sm bold-300">You must choose a time slot <b>an hour or earlier</b> before the time</div>
+               <div className="text-c-sm bold-300 pd-1">You must choose a time slot <b>an hour or earlier</b> before the time</div>
                <select onChange={(e) => setTimeSlot(e.target.value)}>
                   <option value="12:00 pm - 12:15 pm">12:00 pm - 12:15 pm</option>
                   <option value="12:25 pm - 12:40 pm">12:25 pm - 12:40 pm</option>

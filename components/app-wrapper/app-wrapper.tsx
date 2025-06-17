@@ -27,7 +27,6 @@ export default function AppWrapper({
             </header>
 
             <section className="body">
-               <br />
                {children}
             </section>
 			</div>

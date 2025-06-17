@@ -8,6 +8,7 @@ export default function CoursesClientSide({ courseInfo }: { courseInfo: Course }
    let modules: CourseModules[] = courseInfo.modules.split(",") as any[];
 
    return (<>
+      <div className="text-c-s" />
       <div className="body-section">
          <div className="body-section-title">Your Fertility Roadmap Modules</div>
          <div className="body-section-content">
