@@ -17,18 +17,20 @@ export default async function FertilityClinics () {
    if (approvedClinics == false) approvedClinics = [];
 
    return (
-      <AppWrapper username={session?.user?.name || 'No Session'}>
+      <AppWrapper username={session?.user?.name || 'No Session'} page="clinics">
          <div>
             <BackToHome />
             <div className="text-c-xl bold-600">Fertility Institutions</div><br />
-            {approvedClinics.length > 0 ? <>
-               <br />
-               {approvedClinics.map((approvedClinic: Clinic, index: number) => {
-                  return <Clinic key={index} clinic={approvedClinic} />
-               })}
-            </> : <>
-               <div className="text-c-sm">No fertility institutions</div>
-            </>}
+            <div className="clinics">
+               {approvedClinics.length > 0 ? <>
+                  <br />
+                  {approvedClinics.map((approvedClinic: Clinic, index: number) => {
+                     return <Clinic key={index} clinic={approvedClinic} />
+                  })}
+               </> : <>
+                  <div className="text-c-sm">No fertility institutions</div>
+               </>}
+            </div>
          </div>
       </AppWrapper>
    )

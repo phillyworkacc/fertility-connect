@@ -11,7 +11,7 @@ import { verifyPayment } from '../actions/payments'
 export default function ClinicFormPage() {
    const clinicTypes: any[] = ["Fertility Clinics", "Fertility Expert", "Diagnostic Laboratory", "Other"]
    const [name, setName] = useState("")
-   const [type, setType] = useState("Fertility Clinic" as ClinicType)
+   const [type, setType] = useState("Fertility Clinic" as ClinicType | any)
    const [email, setEmail] = useState("")
    const [telephone, setTelephone] = useState("")
    const [address, setAddress] = useState("")
@@ -52,6 +52,13 @@ export default function ClinicFormPage() {
          router.push("/");
       } else {
          setRender(verified);
+      }
+   }
+
+   const isInputOtherType = (type: string) => {
+      if (type == "Fertility Clinics" || type == "Fertility Expert" || type == "Diagnostic Laboratory") return false;
+      if (type !== "Fertility Clinics" && type !== "Fertility Expert" && type !== "Diagnostic Laboratory") {
+         return true;
       }
    }
 
@@ -103,6 +110,7 @@ export default function ClinicFormPage() {
                               onClick={() => setType(clinicType)}
                            >{clinicType}</div>
                         })}
+                        {isInputOtherType(type) && <input type="text" placeholder='Specify Category' value={type} onChange={(e) => setType(e.target.value)} />}
                      </div>
                   </div><br />
    

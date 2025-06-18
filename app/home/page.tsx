@@ -92,7 +92,10 @@ export default async function Home() {
 					<Link href='/journey-to-parah'>
 						<div className="body-section-content-card">
 							<div className="image"><img src="./assets/ebook-cover-image.jpg" alt="card-image" /></div>
-							<div className="name">Journey to Parah EBook</div>
+							<div className="name">
+								<div className="text-c-s">Journey to Parah</div>
+								<div className="text-c-xs">E-Book</div>
+							</div>
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>
@@ -100,13 +103,6 @@ export default async function Home() {
 						<div className="body-section-content-card">
 							<div className="image"><img src="./logo.png" alt="card-image" /></div>
 							<div className="name">FertilityConnect Community</div>
-							<div className="open-arrow-i"><ArrowRight /></div>
-						</div>
-					</Link>
-					<Link href='/fertility-clinics'>
-						<div className="body-section-content-card">
-							<div className="image"><img src="./assets/clinic-logo.png" alt="card-image" /></div>
-							<div className="name">Fertility Clinics and Institutions</div>
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>

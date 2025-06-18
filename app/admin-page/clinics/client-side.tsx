@@ -37,23 +37,20 @@ export default function ClinicsRequestsClientPage() {
    return (
       <>
          <AdminWrapper username={session?.user?.name!} page="clinics">
-            <div>
-               <div className="selector">
-                  <div className={`select-option ${filter == "pending" ? "selected" : ""}`} onClick={showPendingClinics}>
-                     Pending
-                  </div>
-                  <div className={`select-option ${filter == "approved" ? "selected" : ""}`} onClick={showApprovedClinics}>Approved Clinics</div>
+            <div className="selector">
+               <div className={`select-option ${filter == "pending" ? "selected" : ""}`} onClick={showPendingClinics}>
+                  Pending
                </div>
-               <br />
+               <div className={`select-option ${filter == "approved" ? "selected" : ""}`} onClick={showApprovedClinics}>Approved Clinics</div>
+            </div>
 
-               <div className="clinics">
-                  <div className="text-c-m">
-                     {displayClinics.length < 1 && `No ${filter} clinics`}
-                  </div>
-                  {displayClinics.map((clinic: Clinic, index: number) => {
-                     return <AdminClinic key={index} clinic={clinic} />
-                  })}
+            <div className="clinics">
+               <div className="text-c-m">
+                  {displayClinics.length < 1 && `No ${filter} clinics`}
                </div>
+               {displayClinics.map((clinic: Clinic, index: number) => {
+                  return <AdminClinic key={index} clinic={clinic} />
+               })}
             </div>
          </AdminWrapper>
       </>

@@ -75,9 +75,9 @@ export default function TipForm() {
       <>
          <AdminWrapper username={session?.user?.name!} page="tips">
             <div>
-               <div className="text-c-l bold-600" style={{padding:"8px 0"}}>Add a Tip</div><br />
+               <div className="text-c-l bold-600 pd-1">Add a Tip</div>
 
-               <div className="text-c-sm bold-700">Type of Tip</div>
+               <div className="text-c-sm bold-700 pd-1">Type of Tip</div>
                <div className="selector">
                   <div className={`select-option ${tipType == "fertility" ? "selected" : ""}`} onClick={() => setTipType("fertility")}>
                      Fertility
@@ -88,14 +88,14 @@ export default function TipForm() {
                   <div className={`select-option ${tipType == "diet" ? "selected" : ""}`} onClick={() => setTipType("diet")}>
                      Diet
                   </div>
-               </div><br /><br />
+               </div><br />
 
                <div className="form-content">
                   <input type="text" name="title" placeholder='Tip Title' value={title} onChange={(e) => setTitle(e.target.value)} />
                </div><br /><br />
 
                <div className="form-content">
-                  <div className="title text-c-sm bold-700">Tip Text</div>
+                  <div className="title text-c-sm bold-700 pd-1">Tip Text</div>
                   <div className="selector">
                      <div 
                         className={`select-option ${!isUploadingText ? "selected" : ""}`} 
@@ -105,9 +105,9 @@ export default function TipForm() {
                         className={`select-option ${isUploadingText  ? "selected" : ""}`}
                         onClick={() => setIsUploadingText(true)}
                      >Upload Text</div>
-                  </div>
+                  </div><br />
                   {(isUploadingText) ? <>
-                     <b className="text-c-s" style={{display:"block",padding:"8px 0"}}>Make sure these documents do not contain any images</b>
+                     <b className="text-c-s pd-1" style={{display:"block"}}>Make sure these documents do not contain any images</b>
                      <input type="file" name="tip-image" accept='application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword' style={{ background: "white" }} onChange={(e) => uploadDoc(e)} />
                      <br />
                   </> : <>
@@ -115,7 +115,7 @@ export default function TipForm() {
                         <textarea placeholder='Tip Text' value={text} onChange={(e) => setText(e.target.value)}></textarea>
                      </div><br />
                   </>}
-               </div><br /><br />
+               </div><br />
                
                <div className="form-content">
                   <div className="title text-c-sm bold-700">Upload Image</div>

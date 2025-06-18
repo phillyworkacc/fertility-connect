@@ -51,7 +51,7 @@ type Clinic = {
 
 type AddClinicParams = {
    name: string;
-   type: ClinicType;
+   type: ClinicType | any;
    email: string;
    telephone: string;
    address: string;
