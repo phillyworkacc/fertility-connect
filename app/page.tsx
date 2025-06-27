@@ -40,7 +40,7 @@ export default function Home() {
 			<header className="landing">
 				<div className="page-container-landing">
 					<div className="logo" onClick={() => router.push("/")}>
-						<img src="./landing.logo.png" alt="logo" />
+						<img src="./logo.landing.png" alt="logo" />
 					</div>
 					<div className="actions">
 						{session ? <>

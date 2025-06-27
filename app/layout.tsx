@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 		siteName: "Fertility Connect",
 		images: [
 			{
-				url: "https://thefertilityconnect.com/landing.logo.png",
+				url: "https://thefertilityconnect.com/logo.landing.png",
 				width: 1208,
 				height: 697,
 				alt: "Fertility Connect App - Empowering Your Fertility Journey",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 		description:
 			"Track your ovulation, understand your body, and connect with fertility experts to guide your journey.",
 		creator: "@FertilityConnect",
-		images: ["https://thefertilityconnect.com/landing.logo.png"],
+		images: ["https://thefertilityconnect.com/logo.landing.png"],
 	},
 };
 
