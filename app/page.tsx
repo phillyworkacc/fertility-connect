@@ -8,6 +8,7 @@ import { subscribeToRegisterClinic } from "./actions/payments";
 import { useEffect, useState } from "react";
 import { checkSubscribed, getCurrentUser } from "./actions/user";
 import TiktokIcon from "@/components/tiktok/tiktok";
+import DownloadApp from "@/components/download-app/download-app";
 
 export default function Home() {
 	const { data: session } = useSession();
@@ -52,6 +53,8 @@ export default function Home() {
 			</header>
 
 			<main className="content">
+
+				<DownloadApp />
 
 				<section className="about-us">
 					<div className="page-container-landing">
