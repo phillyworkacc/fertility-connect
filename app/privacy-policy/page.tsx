@@ -26,9 +26,7 @@ export default function PrivacyPolicyPage () {
             <div className="text-c-sm">
             We may collect the following types of data when you use our site:
             <ul className="text-c-sm">
-               <li><strong>Personal Information</strong>: Name, email address, and any information you submit through our contact forms or newsletter sign-up.</li>
-               <li><strong>Usage Data</strong>: Pages visited, time on site, browser type, IP address (collected via Google Analytics or similar tools).</li>
-               <li><strong>Cookies</strong>: We use cookies to improve your experience and understand how our website is used.</li>
+               <li><strong>Personal Information</strong>: Name, email address, and any information you submit through our contact forms.</li>
             </ul>
             </div>
 
@@ -41,7 +39,6 @@ export default function PrivacyPolicyPage () {
                <li>Provide, operate, and maintain our website</li>
                <li>Respond to inquiries and provide customer support</li>
                <li>Improve website functionality and user experience</li>
-               <li>Send newsletters or updates (if you’ve opted in)</li>
             </ul>
             </div>
 
@@ -49,7 +46,7 @@ export default function PrivacyPolicyPage () {
 
             <div className="text-c-xl bold-600">3. Sharing of Your Information</div>
             <div className="text-c-sm">
-            We do <strong>not</strong> sell or rent your personal data. We may share your information only with trusted third-party services (e.g., analytics or email providers) who assist us in operating our website, under confidentiality agreements.
+            We do <strong>not</strong> sell or rent your personal data.
             </div>
 
             <br />
@@ -58,11 +55,9 @@ export default function PrivacyPolicyPage () {
             <div className="text-c-sm">
             You have the right to:
             <ul className="text-c-sm">
-               <li>Access or request a copy of the personal data we hold about you</li>
-               <li>Correct or delete your information</li>
-               <li>Withdraw consent at any time (e.g., unsubscribe from emails)</li>
+               <li>Delete your information</li>
+               <li>Withdraw consent at any time (e.g., delete your account)</li>
             </ul>
-            To exercise these rights, please email us at [Insert Contact Email].
             </div>
 
             <br />
@@ -83,7 +78,7 @@ export default function PrivacyPolicyPage () {
 
             <div className="text-c-xl bold-600">7. Children's Privacy</div>
             <div className="text-c-sm">
-            Our website is not intended for children under the age of 13, and we do not knowingly collect data from them.
+            Our website is not intended for children under the age of 18, and we do not knowingly collect data from them.
             </div>
 
             <br />
