@@ -41,8 +41,17 @@ export default function FertilityTipsClient() {
             <div className="text-c-xxl bold-800">Fertility Tips</div>
             {(scrapeFailure == "") ? <>
                <div className="diet-tips">
-                  {dataFertilityTips.map((ferilityTip, index) => {
-                     return <DietTip key={index} dietTip={ferilityTip} />
+                  <div className="diet-tip">
+                     <div className="title">4 Common Emotional Reactions to 2 weeks wait after IVF Procedure You Need to Avoid</div>
+                     <div className="image"><img src="./assets/common-emotional-reactions-imgs/img1.jpg" /></div>
+                     <div className="image"><img src="./assets/common-emotional-reactions-imgs/img2.jpg" /></div>
+                     <div className="image"><img src="./assets/common-emotional-reactions-imgs/img3.jpg" /></div>
+                     <div className="image"><img src="./assets/common-emotional-reactions-imgs/img4.jpg" /></div>
+                     <div className="image"><img src="./assets/common-emotional-reactions-imgs/img5.jpg" /></div>
+                     <div className="image"><img src="./assets/common-emotional-reactions-imgs/img6.jpg" /></div>
+                  </div>
+                  {dataFertilityTips.map((fertilityTip, index) => {
+                     return <DietTip key={index} dietTip={fertilityTip} />
                   })}
                </div>
             </> : <><ErrorBlock>{scrapeFailure}</ErrorBlock></>}
