@@ -42,10 +42,10 @@ export default function SignUpForm() {
       console.log(formData);
       const response = await createUserAccount(formData);
       console.log(response);
-      if (response) {
+      if (response.data) {
          router.push(mainUserHomeUrl);
       } else {
-         setError("Failed to create account. Try Again.");
+         setError(response.error!);
          setSignUpLoading(false);
          return;
       }

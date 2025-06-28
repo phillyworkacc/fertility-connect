@@ -72,16 +72,19 @@ export async function checkUserLoggedIn (): Promise<boolean> {
 export async function createUserAccount (signUpFormData: SignUpFormData) {
    try {
       const { name, email, password } = signUpFormData;
+      const userExists = await UserDB.getUser(email);
+      if (userExists) return { data: false, error: "An account with that email already exists" };
+
       const result = await UserDB.insert({
          username: name,
          email: email,
          password: hashPasswordT(password),
          created_at: `${Date.now()}`
       })
-      return result;
+      return { data: true, error: undefined };;
    } catch (error: any ) {
       console.log("sign up error - ", error.message);
-      return false;
+      return { data: false, error: "Failed to create account. Try Again." };
    }
 }
 
