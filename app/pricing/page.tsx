@@ -47,7 +47,7 @@ export default function PricingPage() {
          <header className="landing">
 				<div className="page-container-landing">
                <div className="pricing-page-logo" onClick={() => router.push("/")}>
-                  <img src="./landing.logo.png" alt="logo" />
+                  <img src="./logo.landing.png" alt="logo" />
                </div>
             </div>
          </header>
