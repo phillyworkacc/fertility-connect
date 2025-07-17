@@ -2,7 +2,7 @@
 import { UserDB } from "@/db/user";
 import { AdminDB } from "@/db/admin";
 import { authOptions } from "@/lib/authOptions";
-import { hashPasswordT } from "@/utils/hash";
+import { generateRandomCode, hashPasswordT } from "@/utils/hash";
 import { getServerSession } from "next-auth";
 import { appUrl } from "@/utils/constants";
 import { reverseString } from "@/utils/string";
@@ -15,6 +15,7 @@ import fs from "fs";
 import path from "path";
 import SubscribedUserEmail from "@/emails/subscribedEmail";
 import PurchasedCourseEmail from "@/emails/purchasedCourse";
+import ChangeEmailVerificationEmail from "@/emails/changeEmailVerificationCode";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -88,10 +89,52 @@ export async function createUserAccount (signUpFormData: SignUpFormData) {
    }
 }
 
-export async function updateUserAccount (email: string, newEmail: string, newUserName: string) {
+export async function updateUserAccountName (email: string, newUserName: string) {
    try {
+      const isLoggedIn = await checkUserLoggedIn();
+      if (!isLoggedIn) return false;
 
-      return true;
+      const session = await getServerSession(authOptions);
+      if (!session) return false;
+      if (!session.user) return false;
+      if (session.user.email !== email) return false;
+
+      const updated = await UserDB.updateName(email, newUserName);
+      return updated;
+   } catch (error: any) {
+      console.log("update user account error - ", error);
+      return false;
+   }
+}
+
+export async function getCodeForEmailChange (username: string, email: string): Promise<string | false> {
+   try {
+      const code = `${generateRandomCode(6)}`;
+      const emailBody = await render(ChangeEmailVerificationEmail({ username, code }))
+      const { data, error } = await resend.emails.send({
+         from: "Fertility Connect <fertilityconnect@thefertilityconnect.com>",
+         to: [email],
+         subject: "Your Verification Code to Change your Email",
+         html: emailBody
+      })
+      return error ? false : code;
+   } catch (err) {
+      return false;
+   }
+}
+
+export async function updateUserAccountEmail (email: string, newEmail: string) {
+   try {
+      const isLoggedIn = await checkUserLoggedIn();
+      if (!isLoggedIn) return false;
+
+      const session = await getServerSession(authOptions);
+      if (!session) return false;
+      if (!session.user) return false;
+      if (session.user.email !== email) return false;
+
+      const updated = await UserDB.updateEmail(email, newEmail);
+      return updated;
    } catch (error: any) {
       console.log("update user account error - ", error);
       return false;

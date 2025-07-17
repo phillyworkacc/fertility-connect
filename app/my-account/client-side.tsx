@@ -2,14 +2,15 @@
 import "@/styles/main.css"
 import "@/styles/my-account.css"
 import AppWrapper from "@/components/app-wrapper/app-wrapper"
-import { signOut, useSession } from 'next-auth/react'
-import React, { useState } from 'react'
-import { KeyRound, LogOut, Pocket, Trash2, UserRoundCog } from "lucide-react"
 import ExtraSpacing from "@/components/extra-spacing/extra-spacing"
 import wait from "@/lib/wait"
 import LoadingAction from "@/components/loading-action/loading-action"
-import { deleteUserAccount } from "../actions/user"
 import Link from "next/link"
+import UpdateEmail from "./UpdateEmail"
+import { signOut, useSession } from 'next-auth/react'
+import { useState } from 'react'
+import { KeyRound, LogOut, Trash2, UserRoundCog } from "lucide-react"
+import { deleteUserAccount, updateUserAccountName } from "../actions/user"
 import { reloadSession } from "@/lib/reloadSession"
 import { useRouter } from "next/navigation"
 
@@ -17,7 +18,7 @@ export default function AccountPageClient({ isAdmin }: { isAdmin: boolean }) {
    const { data: session, update } = useSession();
    const [loadingAction, setLoadingAction] = useState("");
    const [userName, setUserName] = useState(session?.user?.name as string);
-   const router = useRouter();  
+   const router = useRouter();
 
    const onSubmitDelete = async () => {
       if (confirm("Are you sure you want to delete your account ?")) {
@@ -32,20 +33,36 @@ export default function AccountPageClient({ isAdmin }: { isAdmin: boolean }) {
       }
    }
 
-   // const onUpdateUser = async () => {
-   //    reloadSession();
-   // }
+   const onUpdateUserName = async () => {
+      const updatedUserName = await updateUserAccountName(session?.user?.email!, userName);
+      if (!updatedUserName) {
+         alert('Failed to update your username');
+         return;
+      }
+      update({
+         ...session,
+         user: {
+            ...session?.user,
+            name: userName
+         }
+      })
+      reloadSession();
+      alert('Updated user name');
+   }
 
    return (
       <AppWrapper username={session?.user?.name!} page="my-account">
          {loadingAction !== "" ? <LoadingAction actionText={loadingAction} /> : <></>}
-
          <br />
-
          <div className="ma-card">
             <div className="text-c-xl bold-900">Account Info</div>
             <div className="text-c-m">{session?.user?.name}</div>
-            <div className="text-c-m">{session?.user?.email}</div>
+            <div className="text-c-m">{session?.user?.email}</div><br />
+            <div className="ma-form-content">
+               <input type="text" name="name" id="name" placeholder="Name" value={userName} onChange={(e) => setUserName(e.target.value)} />
+               <button disabled={session?.user?.name! === userName} onClick={onUpdateUserName}>Change Name</button>
+            </div><br />
+            <UpdateEmail />
          </div>
 
          {isAdmin ? <>

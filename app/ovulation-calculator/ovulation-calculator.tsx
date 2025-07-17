@@ -53,7 +53,7 @@ export default function OvulationCalculatorForm() {
 
             <div className="title">Ovulation Calculator</div>
 
-            <h3>Choose Last Period Date</h3>
+            <h3>Choose First Day of Last Period Date</h3>
             <div className="form-content">
                <DatePicker onChange={(date: string) => setLastPeriodDate(date)} />
             </div><br /><br />

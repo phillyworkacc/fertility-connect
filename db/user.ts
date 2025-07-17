@@ -55,6 +55,22 @@ export const UserDB = {
      return res.rowCount === 1;
    },
  
+   updateName: async (email: string, newName: string) => {
+     const res = await pool.query(
+       "UPDATE users SET username = $1 WHERE email = $2",
+       [newName, email]
+     );
+     return res.rowCount === 1;
+   },
+ 
+   updateEmail: async (email: string, newEmail: string) => {
+     const res = await pool.query(
+       "UPDATE users SET email = $1 WHERE email = $2",
+       [newEmail, email]
+     );
+     return res.rowCount === 1;
+   },
+ 
    resetPwd: async (userid: string, newPassword: string) => {
      const res = await pool.query(
        "UPDATE users SET password = $1 WHERE userid = $2",
