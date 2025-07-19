@@ -26,8 +26,8 @@ export default function UpdateEmail() {
    const onUpdateUserEmail = async () => {
       if (enteredCode === theActualCode) {
          const updatedUserEmail = await updateUserAccountEmail(session?.user?.email!, userEmail);
-         if (!updatedUserEmail) {
-            alert('Failed to update your email');
+         if (!updatedUserEmail.success) {
+            alert(updatedUserEmail.result);
             return;
          }
          update({
@@ -38,7 +38,7 @@ export default function UpdateEmail() {
             }
          })
          setTheActualCode(undefined);
-         alert('Updated your email');
+         alert(updatedUserEmail.result);
          reloadSession();
       } else {
          alert("Invalid Code")

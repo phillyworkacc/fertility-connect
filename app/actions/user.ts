@@ -126,18 +126,34 @@ export async function getCodeForEmailChange (username: string, email: string): P
 export async function updateUserAccountEmail (email: string, newEmail: string) {
    try {
       const isLoggedIn = await checkUserLoggedIn();
-      if (!isLoggedIn) return false;
+      if (!isLoggedIn) return { success: false, result: 'No User Logged In' };;
 
       const session = await getServerSession(authOptions);
-      if (!session) return false;
-      if (!session.user) return false;
-      if (session.user.email !== email) return false;
+      if (!session) return { success: false, result: 'User Session failed' };;
+      if (!session.user) return { success: false, result: 'User Session failed' };;
+      if (session.user.email !== email) return { success: false, result: 'User Session failed' };
 
-      const updated = await UserDB.updateEmail(email, newEmail);
-      return updated;
+      // check if a user with that email exists
+      const existingUser = await UserDB.getUser(newEmail);
+      if (existingUser == false) {
+         const updated = await UserDB.updateEmail(email, newEmail);
+         return {
+            success: true,
+            result: 'Changed Email Successfully'
+         }
+      } else {
+         return {
+            success: false,
+            result: 'A user with that email already exists'
+         }
+      }
+
    } catch (error: any) {
       console.log("update user account error - ", error);
-      return false;
+      return {
+         success: false,
+         result: 'Failed to change email'
+      };
    }
 }
 
