@@ -186,7 +186,7 @@ export async function getCurrentUser (sessionEmail: string): Promise<false | Use
    }
 }
 
-export async function checkSubscribed (userid: string): Promise<false | User> {
+export async function checkSubscribed (userid: string): Promise<false | any> {
    try {
       const user = await UserDB.isSubscribed(userid);
       return user;
