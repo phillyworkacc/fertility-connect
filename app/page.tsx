@@ -1,7 +1,7 @@
 "use client"
 import "@/styles/landingpage.css"
 import Link from "next/link";
-import { BookText, Facebook, Instagram, Phone } from "lucide-react";
+import { BookText, Facebook, Instagram, Mail, Phone } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { subscribeToRegisterClinic } from "./actions/payments";
@@ -211,8 +211,7 @@ export default function Home() {
 							<div className="footer-section">
 								<div className="footer-section-title">Contact Us</div>
 								<div className="footer-section-content">
-									<div className="text-c-sm dfb"><Phone /> +234 807 759 0836</div>
-									<div className="text-c-sm dfb"><Phone /> +234 802 312 8366 (WhatsApp ONLY)</div>
+									<div className="text-c-sm dfb"><Mail /> fertilityconnect@gmail.com</div>
 									<div className="socials-content">
 										<div className="name">@thefertilityconnect</div>
 										<Link href='https://www.instagram.com/thefertilityconnect' target="_blank">
