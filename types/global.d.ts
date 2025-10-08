@@ -1,3 +1,5 @@
+declare module '*.css'
+
 type BMICategory = "Underweight" | "Normal Weight" | "Overweight" | "Obesity Class I" | "Obesity Class II" | "Obesity Class III";
 type BMIResults = {
    category: BMICategory,
