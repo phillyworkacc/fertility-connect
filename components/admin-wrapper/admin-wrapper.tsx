@@ -3,7 +3,7 @@ import "@/styles/main.css"
 import Link from 'next/link'
 import React from 'react'
 
-type Page = "admin-home" | "clinics" | "tips" | "bookings"
+type Page = "admin-home" | "clinics" | "tips" | "bookings" | "emails"
 
 export default function AdminWrapper({ 
    username, 
@@ -20,9 +20,9 @@ export default function AdminWrapper({
                   <Link href="/admin-page/clinics" className={`pages-link ${page == "clinics" ? "selected" : ""}`}>Clinics</Link>
                   <Link href="/admin-page/bookings" className={`pages-link ${page == "bookings" ? "selected" : ""}`}>Bookings</Link>
                   <Link href="/admin-page/tips" className={`pages-link ${page == "tips" ? "selected" : ""}`}>Tips</Link>
+                  <Link href="/admin-page/emails" className={`pages-link ${page == "emails" ? "selected" : ""}`}>Emails</Link>
                </div>
             </header>
-
             <section className="body">
                {children}
             </section>

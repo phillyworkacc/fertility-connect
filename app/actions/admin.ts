@@ -4,6 +4,8 @@ import { checkAdminUser } from "./user";
 import { ClinicsDB } from "@/db/clinics";
 import { saveTipImage } from "@/lib/tipImage";
 import { UserDB } from "@/db/user";
+import { formatDate, formatMilliseconds } from "@/utils/date";
+import { sendEmailUsingResend } from "./email";
 
 
 function formatTipTitle (title: string) {
@@ -101,5 +103,30 @@ export async function getPendingClinics () {
       }
    } else {
       return false;
+   }
+}
+
+export async function sendMassEmailToAllUsers (subject: string, emailContent: string, customEmails?: string) {
+   const result = await checkAdminUser();
+   if (!result) return false;
+
+   if (customEmails) {
+      const emails = customEmails.split(",").map(e => e.replaceAll(" ", ""));
+      for (const index in emails) {
+         const userEmail = emails[index];
+         const res = await sendEmailUsingResend(userEmail, subject, emailContent);
+         if (!res) console.log(`Failed to send email to: ${userEmail}`);
+      }
+   
+      return true;
+   } else {
+      const users = await UserDB.getAllUsers();
+      for (const index in users) {
+         const user = users[index];
+         const res = await sendEmailUsingResend(user.email, subject, emailContent);
+         if (!res) console.log(`Failed to send email to: ${user.email}`);
+      }
+   
+      return true;
    }
 }
