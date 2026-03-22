@@ -16,6 +16,18 @@ export async function notifyConsultantChatMessage (userid: string) {
    );
 }
 
+export async function notifyUserChatMessage (userid: string) {
+   const user = await UserDB.getUserById(userid);
+   if (!user) return;
+
+   await sendMail(
+      user.userid!,
+      `New Message from the Consultant Chat`,
+      `You have received a new message from the Consultant <br />
+      Open it here: <a href='https://thefertilityconnect/consultant-chat'>View Message from the Consultant</a> `
+   );
+}
+
 export async function sendMessageToConsultant (message: string, userid: string) {
    try {
       const userLoggedIn = await checkUserLoggedIn();
@@ -40,6 +52,9 @@ export async function sendMessageToUserContact (message: string, contactId: stri
          const isAdmin = await checkAdminUser();
          if (isAdmin) {
             const sent = await MessagesDB.sendConsultantMessage(contactId, message);
+            if (sent) {
+               await notifyUserChatMessage(contactId);
+            }
             return sent;
          } else {
             return false;
