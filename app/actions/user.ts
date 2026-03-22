@@ -179,7 +179,7 @@ export async function changeUserAccountPassword (email: string, newPwd: string) 
 
 export async function getCurrentUser (sessionEmail: string): Promise<false | User> {
    try {
-      const user = await UserDB.getUser(sessionEmail);
+      const user: any = await UserDB.getUser(sessionEmail);
       return user;
    } catch (error: any) {
       return false;
@@ -212,7 +212,7 @@ export async function checkAdminUser () {
 }
 
 export async function forgotPassword (email: string) {
-   const checkUserExists = await UserDB.getUser(email);
+   const checkUserExists: any = await UserDB.getUser(email);
    if (checkUserExists == false) return {
       result: false,
       msg: "No user with that email exists."

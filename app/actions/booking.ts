@@ -131,7 +131,7 @@ export async function getUserBookings (): Promise<Booking[] | false> {
 
 export async function cancelUserBooking (bookingId: string, userId: string, admin?: boolean): Promise<boolean> {
    try {
-      const user = await UserDB.getUserById(userId);
+      const user: any = await UserDB.getUserById(userId);
       if (user == false) return false;
 
       const bookingInfo = await BookingDB.getBookingInfo(bookingId);

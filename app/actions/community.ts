@@ -9,18 +9,18 @@ import isSubscribed from "@/utils/checkSubscription";
 
 export async function getAllCommunityPosts (): Promise<CommunityPost[]> {
    try {
-      const posts = await PostsDB.getAllPosts();
+      const posts: any = await PostsDB.getAllPosts();
       if (!posts) return [];
 
       const communityPosts: CommunityPost[] = await Promise.all(
-         posts.map(async (post) => {
+         posts.map(async (post: any) => {
             const user = await UserDB.getUserById(post.userid);
             const replies = await getCommunityPostReplies(post.postid);
             return {
                postid: post.postid,
                message: post.message,
                username: user ? user.username : 'Nomad',
-               isSubscribed: user ? isSubscribed(user.subscribed) : false,
+               isSubscribed: user ? isSubscribed(user.subscribed!) : false,
                date: post.date,
                replies: replies ? replies : []
             };
@@ -33,17 +33,17 @@ export async function getAllCommunityPosts (): Promise<CommunityPost[]> {
 
 export async function getCommunityPost (postId: string): Promise<CommunityPost | false> {
    try {
-      const post = await PostsDB.getPost(postId);
+      const post: any = await PostsDB.getPost(postId);
       if (!post) return false;
 
-      const user = await UserDB.getUserById(post.userid);
-      const replies = await getCommunityPostReplies(post.postid);
+      const user: any = await UserDB.getUserById(post.userid);
+      const replies: any = await getCommunityPostReplies(post.postid);
 
       return {
          postid: post.postid,
          message: post.message,
          username: user ? user.username : 'Nomad',
-         isSubscribed: user ? isSubscribed(user.subscribed) : false,
+         isSubscribed: user ? isSubscribed(user.subscribed!) : false,
          date: post.date,
          replies: replies ? replies : []
       }
@@ -52,17 +52,17 @@ export async function getCommunityPost (postId: string): Promise<CommunityPost |
 
 export async function getCommunityPostReplies (postId: string): Promise<CommunityReply[] | false> {
    try {
-      const replies = await RepliesDB.getPostReplies(postId);
+      const replies: any = await RepliesDB.getPostReplies(postId);
       if (!replies) return [];
 
       const communityReplies: CommunityReply[] = await Promise.all(
-         replies.map(async (reply) => {
+         replies.map(async (reply: any) => {
             const user = await UserDB.getUserById(reply.userid);
             return {
                replyid: reply.replyid,
                message: reply.message,
                username: user ? user.username : 'Nomad',
-               isSubscribed: user ? isSubscribed(user.subscribed) : false,
+               isSubscribed: user ? isSubscribed(user.subscribed!) : false,
                date: reply.date
             };
          })
