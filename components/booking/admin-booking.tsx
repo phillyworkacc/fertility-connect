@@ -13,7 +13,7 @@ export default function Booking({ booking, userId }: { booking: Booking, userId:
    let createdAtDate = new Date(parseInt(created_at));
    const [bookingStatus, setBookingStatus] = useState(status)
    const [display, setDisplay] = useState(true)
-   const [user, setUser] = useState({} as User)
+   const [user, setUser] = useState<any>({})
 
    useEffect(() => { getUser(); }, [])
 
@@ -22,7 +22,7 @@ export default function Booking({ booking, userId }: { booking: Booking, userId:
       if (user == false) {
          setDisplay(true);
       } else {
-         setUser((prev) => ({ ...user }))
+         setUser((prev: any) => ({ ...user }))
       }
    } 
 

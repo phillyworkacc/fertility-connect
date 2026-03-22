@@ -16,7 +16,7 @@ export const UserDB = {
          )
          .limit(1);
 
-      return res.length > 0 ? res[0] : false;
+      return res.length > 0 ? (res[0] as any) : false;
    },
 
    getAllUsers: async (): Promise<User[]> => {
