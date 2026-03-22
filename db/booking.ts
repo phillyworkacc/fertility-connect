@@ -1,85 +1,114 @@
+import { db } from "@/db";
+import { bookingsTable } from "@/db/schemas";
+import { eq, and } from "drizzle-orm";
 import { uuid } from "@/lib/uui";
-import { pool } from "./db";
 
 export const BookingDB = {
    getBookingInfo: async (bookingId: string): Promise<Booking | false> => {
-     const res = await pool.query(
-       "SELECT * FROM bookings WHERE booking_id = $1",
-       [bookingId]
-     );
-     return res.rows.length > 0 ? res.rows[0] : false;
+      const res = await db
+         .select()
+         .from(bookingsTable)
+         .where(eq(bookingsTable.booking_id, bookingId))
+         .limit(1);
+
+      return res.length > 0 ? res[0] as any : false;
    },
- 
-   getAllBookings: async () => {
-     const res = await pool.query("SELECT * FROM bookings");
-     return res.rows as Booking[];
+
+   getAllBookings: async (): Promise<Booking[]> => {
+      return (await db.select().from(bookingsTable)) as any[];
    },
- 
-   getAllPendingBookings: async () => {
-     const res = await pool.query(
-       "SELECT * FROM bookings WHERE status = $1",
-       ["pending"]
-     );
-     return res.rows as Booking[];
+
+   getAllPendingBookings: async (): Promise<Booking[]> => {
+      return (await db
+         .select()
+         .from(bookingsTable)
+         .where(eq(bookingsTable.status, "pending"))) as any[];
    },
- 
-   getAllCompletedBookings: async () => {
-     const res = await pool.query(
-       "SELECT * FROM bookings WHERE status = $1",
-       ["completed"]
-     );
-     return res.rows as Booking[];
+
+   getAllCompletedBookings: async (): Promise<Booking[]> => {
+      return (await db
+         .select()
+         .from(bookingsTable)
+         .where(eq(bookingsTable.status, "completed"))) as any[];
    },
- 
-   getAllCancelledBookings: async () => {
-     const res = await pool.query(
-       "SELECT * FROM bookings WHERE status = $1",
-       ["cancelled"]
-     );
-     return res.rows as Booking[];
+
+   getAllCancelledBookings: async (): Promise<Booking[]> => {
+      return (await db
+         .select()
+         .from(bookingsTable)
+         .where(eq(bookingsTable.status, "cancelled"))) as any[];
    },
- 
-   getAllUserBookings: async (userid: string) => {
-     const res = await pool.query(
-       "SELECT * FROM bookings WHERE user_id = $1",
-       [userid]
-     );
-     return res.rows as Booking[];
+
+   getAllUserBookings: async (userid: string): Promise<Booking[]> => {
+      return (await db
+         .select()
+         .from(bookingsTable)
+         .where(eq(bookingsTable.user_id, userid))) as any[];
    },
- 
-   makeBooking: async (addBookingParams: AddBookingParams) => {
-     let { user_id, date_booked, time_booked, created_at } = addBookingParams;
-     let bookingId = uuid.bookingid();
-     let bookingStatus: BookingStatus = "pending";
-     const res = await pool.query(
-       "INSERT INTO bookings (booking_id, user_id, date_booked, time_booked, status, created_at) VALUES ($1, $2, $3, $4, $5, $6)",
-       [bookingId, user_id, date_booked, time_booked, bookingStatus, created_at]
-     );
-     return res.rowCount === 1;
+
+   makeBooking: async (params: AddBookingParams) => {
+      const { user_id, date_booked, time_booked, created_at } = params;
+
+      const res = await db
+         .insert(bookingsTable)
+         .values({
+            booking_id: uuid.bookingid(),
+            user_id,
+            date_booked,
+            time_booked,
+            status: "pending",
+            created_at
+         })
+         .returning();
+
+      return res.length === 1;
    },
- 
+
    cancelBooking: async (bookingId: string, userId: string) => {
-     const res = await pool.query(
-       "UPDATE bookings SET status = $1 WHERE booking_id = $2 AND user_id = $3",
-       ["cancelled", bookingId, userId]
-     );
-     return res.rowCount === 1;
+      const res = await db
+         .update(bookingsTable)
+         .set({ status: "cancelled" })
+         .where(
+            and(
+               eq(bookingsTable.booking_id, bookingId),
+               eq(bookingsTable.user_id, userId)
+            )
+         )
+         .returning();
+
+      return res.length === 1;
    },
- 
+
    completeBooking: async (bookingId: string, userId: string) => {
-     const res = await pool.query(
-       "UPDATE bookings SET status = $1 WHERE booking_id = $2 AND user_id = $3",
-       ["completed", bookingId, userId]
-     );
-     return res.rowCount === 1;
+      const res = await db
+         .update(bookingsTable)
+         .set({ status: "completed" })
+         .where(
+            and(
+               eq(bookingsTable.booking_id, bookingId),
+               eq(bookingsTable.user_id, userId)
+            )
+         )
+         .returning();
+
+      return res.length === 1;
    },
- 
-   checkBookingExists: async (params: Omit<AddBookingParams, "user_id" | "created_at">) => {
-     const res = await pool.query(
-       "SELECT * FROM bookings WHERE date_booked = $1 AND time_booked = $2 AND status = $3",
-       [params.date_booked, params.time_booked, "pending"]
-     );
-     return res.rows.length > 0;
+
+   checkBookingExists: async (
+      params: Omit<AddBookingParams, "user_id" | "created_at">
+   ) => {
+      const res = await db
+         .select()
+         .from(bookingsTable)
+         .where(
+            and(
+               eq(bookingsTable.date_booked, params.date_booked),
+               eq(bookingsTable.time_booked, params.time_booked),
+               eq(bookingsTable.status, "pending")
+            )
+         )
+         .limit(1);
+
+      return res.length > 0;
    }
- };
- 
+};

@@ -1,0 +1,106 @@
+.consultant-chats {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.consultant-chats .consultant-chats-container {
+   width: 100%;
+   max-width: 800px;
+   height: 100vh;
+   padding: 15px;
+   position: relative;
+}
+
+.consultant-chats-header {
+   width: 100%;
+   height: 10vh;
+   display: flex;
+   align-items: center;
+   gap: 7px;
+}
+
+.consultant-chats-header .logo {
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+}
+
+.consultant-chats-header .logo img {
+   height: 100%;
+   object-fit: contain;
+   object-position: center;
+}
+
+.consultant-chats-header span {
+   padding: 0;
+}
+
+.consultant-chats-conversations {
+   width: 100%;
+   height: 79vh;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+@media screen and (max-width: 900px) {
+   .consultant-chats-header {
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      gap: 0;
+   }
+
+   .consultant-chats-header .logo {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+   }
+
+   .consultant-chats-header .logo img {
+      height: 8vh;
+      object-fit: contain;
+      object-position: center;
+   }
+
+   .consultant-chats-header span {
+      padding: 10px 20px;
+   }
+
+   .consultant-chats-conversations {
+      height: 72vh;
+   }
+}
+
+.consultant-chats-conversations .conversation {
+   width: 100%;
+   padding: 10px 12px;
+   border: 1px solid #dedede;
+   border-radius: 15px;
+   background: white;
+   color: black;
+   cursor: pointer;
+}
+
+.consultant-chats-conversations .conversation .contact-name {
+   width: 100%;
+   font-size: 1.2rem;
+   font-weight: 600;
+}
+
+.consultant-chats-conversations .conversation .contact-date {
+   width: 100%;
+   font-size: 0.9rem;
+   color: #777777;
+}

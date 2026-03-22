@@ -99,6 +99,13 @@ export default async function Home() {
 							<div className="open-arrow-i"><ArrowRight /></div>
 						</div>
 					</Link>
+					<Link href='/consultant-chat'>
+						<div className="body-section-content-card">
+							<div className="image"><img src="./logo.png" alt="card-image" /></div>
+							<div className="name">Consultant Chat</div>
+							<div className="open-arrow-i"><ArrowRight /></div>
+						</div>
+					</Link>
 					<Link href='/community'>
 						<div className="body-section-content-card">
 							<div className="image"><img src="./logo.png" alt="card-image" /></div>

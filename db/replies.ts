@@ -1,19 +1,41 @@
+import { db } from "@/db";
+import { repliesTable } from "@/db/schemas";
+import { eq } from "drizzle-orm";
 import { uuid } from "@/lib/uui";
-import { pool } from "./db";
 
 export const RepliesDB = {
    getPostReplies: async (postid: string): Promise<Reply[] | false> => {
-      const res = await pool.query("SELECT * FROM replies WHERE postid = $1", [postid]);
-      return res.rows.length > 0 ? res.rows : false;
+      const res: any[] = await db
+         .select()
+         .from(repliesTable)
+         .where(eq(repliesTable.postid, postid));
+
+      return res.length > 0 ? res : false;
    },
 
-   addPostReply: async (userid: string, postid: string, message: string, date: string) => {
+   addPostReply: async (
+      userid: string,
+      postid: string,
+      message: string,
+      date: string
+   ) => {
       const replyid = uuid.replyid();
-      const res = await pool.query(
-         "INSERT INTO replies (replyid, userid, message, date, postid) VALUES ($1, $2, $3, $4, $5)",
-         [replyid, userid, message, date, postid]
-      );
-      return res.rowCount === 1;
+
+      const res = await db
+         .insert(repliesTable)
+         .values({
+            replyid,
+            userid,
+            message,
+            date,
+            postid
+         })
+         .returning();
+
+      return res.length === 1;
+   },
+
+   getAll: async () => {
+      return await db.select().from(repliesTable);
    }
 };
- 

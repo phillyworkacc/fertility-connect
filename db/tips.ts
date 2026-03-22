@@ -1,52 +1,87 @@
-import { pool } from './db';
+import { db } from "@/db";
+import { dietTipsTable, lifestyleTipsTable, fertilityTipsTable } from "@/db/schemas";
+import { desc } from "drizzle-orm";
 
 export const DietTipsDB = {
    insert: async (title: string, text: string, date: string, image?: string) => {
-     const res = await pool.query(
-       "INSERT INTO diet_tips (title, text, image, date) VALUES ($1, $2, $3, $4)",
-       [title, text, image || '', date]
-     );
-     return res.rowCount === 1;
+      const res = await db
+         .insert(dietTipsTable)
+         .values({
+            title, text, image: image || "", date
+         })
+         .returning();
+
+      return res.length === 1;
    },
- 
+
    all: async (): Promise<any[] | false> => {
-     const res = await pool.query(
-       "SELECT title, text, image, date FROM diet_tips ORDER BY id DESC"
-     );
-     return res.rows.length > 0 ? res.rows : false;
+      const res = await db
+         .select({
+            title: dietTipsTable.title,
+            text: dietTipsTable.text,
+            image: dietTipsTable.image,
+            date: dietTipsTable.date
+         })
+         .from(dietTipsTable)
+         .orderBy(desc(dietTipsTable.id));
+
+      return res.length > 0 ? res : false;
    }
- };
- 
- export const LifestyleTipsDB = {
+};
+
+export const LifestyleTipsDB = {
    insert: async (title: string, text: string, date: string, image?: string) => {
-     const res = await pool.query(
-       "INSERT INTO lifestyle_tips (title, text, image, date) VALUES ($1, $2, $3, $4)",
-       [title, text, image || '', date]
-     );
-     return res.rowCount === 1;
+      const res = await db
+         .insert(lifestyleTipsTable)
+         .values({
+            title,
+            text,
+            image: image || "",
+            date
+         })
+         .returning();
+
+      return res.length === 1;
    },
- 
+
    all: async (): Promise<any[] | false> => {
-     const res = await pool.query(
-       "SELECT title, text, image, date FROM lifestyle_tips ORDER BY id DESC"
-     );
-     return res.rows.length > 0 ? res.rows : false;
+      const res = await db
+         .select({
+            title: lifestyleTipsTable.title,
+            text: lifestyleTipsTable.text,
+            image: lifestyleTipsTable.image,
+            date: lifestyleTipsTable.date
+         })
+         .from(lifestyleTipsTable)
+         .orderBy(desc(lifestyleTipsTable.id));
+
+      return res.length > 0 ? res : false;
    }
- };
- 
- export const FertilityTipsDB = {
+};
+
+export const FertilityTipsDB = {
    insert: async (title: string, text: string, date: string, image?: string) => {
-     const res = await pool.query(
-       "INSERT INTO fertility_tips (title, text, image, date) VALUES ($1, $2, $3, $4)",
-       [title, text, image || '', date]
-     );
-     return res.rowCount === 1;
+      const res = await db
+         .insert(fertilityTipsTable)
+         .values({
+            title, text, image: image || "", date
+         })
+         .returning();
+
+      return res.length === 1;
    },
- 
+
    all: async (): Promise<any[] | false> => {
-     const res = await pool.query(
-       "SELECT title, text, image, date FROM fertility_tips ORDER BY id DESC"
-     );
-     return res.rows.length > 0 ? res.rows : false;
-   }
- };
+      const res = await db
+         .select({
+            title: fertilityTipsTable.title,
+            text: fertilityTipsTable.text,
+            image: fertilityTipsTable.image,
+            date: fertilityTipsTable.date
+         })
+         .from(fertilityTipsTable)
+         .orderBy(desc(fertilityTipsTable.id));
+
+      return res.length > 0 ? res : false;
+   },
+};

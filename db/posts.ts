@@ -1,24 +1,41 @@
+import { db } from "@/db";
+import { postsTable } from "@/db/schemas";
+import { eq, desc } from "drizzle-orm";
 import { uuid } from "@/lib/uui";
-import { pool } from "./db";
 
 export const PostsDB = {
    getAllPosts: async (): Promise<Post[] | false> => {
-      const res = await pool.query("SELECT * FROM posts ORDER BY id DESC");
-      return res.rows.length > 0 ? res.rows : false;
+      const res: any = await db
+         .select()
+         .from(postsTable)
+         .orderBy(desc(postsTable.id));
+
+      return res.length > 0 ? res : false;
    },
 
    getPost: async (postid: string) => {
-      const res = await pool.query("SELECT * FROM posts WHERE postid = $1 LIMIT 1", [postid]);
-      return res.rows.length > 0 ? res.rows[0] : false;
+      const res = await db
+         .select()
+         .from(postsTable)
+         .where(eq(postsTable.postid, postid))
+         .limit(1);
+
+      return res.length > 0 ? res[0] : false;
    },
 
    addPost: async (userid: string, message: string, date: string) => {
       const postid = uuid.postid();
-      const res = await pool.query(
-         "INSERT INTO posts (postid, userid, message, date) VALUES ($1, $2, $3, $4)",
-         [postid, userid, message, date]
-      );
-      return res.rowCount === 1;
+
+      const res = await db
+         .insert(postsTable)
+         .values({
+            postid,
+            userid,
+            message,
+            date
+         })
+         .returning();
+
+      return res.length === 1;
    },
 };
- 

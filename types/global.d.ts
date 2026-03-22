@@ -90,7 +90,17 @@ type Course = {
    date: string;
 }
 
+type Message = {
+   id: number;
+   messageid: string;
+   message: string;
+   to: string;
+   from: string;
+   date: string;
+}
+
 type Post = {
+   id: number;
    postid: string;
    message: string;
    userid: string;

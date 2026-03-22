@@ -37,4 +37,11 @@ export const uuid = {
         }
         return 'fc_post_' + final_uuid;
     },
+    messageid: () => {
+        let final_uuid = ''
+        for (let i = 0; i < UUID_LENGTH; i++) {
+            final_uuid += UUID_CHARS_LIST[Math.floor(Math.random() * UUID_CHARS_LIST.length)];
+        }
+        return 'fc_message_cc_' + final_uuid;
+    },
 }

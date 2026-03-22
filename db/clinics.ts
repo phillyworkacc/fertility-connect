@@ -1,78 +1,126 @@
+import { db } from "@/db";
+import { eq, and } from "drizzle-orm";
 import { uuid } from "@/lib/uui";
-import { pool } from "./db";
+import { clinicsTable } from "./schemas";
 
 export const ClinicsDB = {
-   approvedClinics: async () => {
-     const res = await pool.query(
-       "SELECT * FROM clinics WHERE approved = true"
-     );
-     return res.rows as Clinic[];
+   approvedClinics: async (): Promise<Clinic[]> => {
+      return (await db
+         .select()
+         .from(clinicsTable)
+         .where(eq(clinicsTable.approved, true))) as any[];
    },
- 
-   unApprovedClinics: async () => {
-     const res = await pool.query(
-       "SELECT * FROM clinics WHERE approved = false"
-     );
-     return res.rows as Clinic[];
+
+   unApprovedClinics: async (): Promise<Clinic[]> => {
+      return (await db
+         .select()
+         .from(clinicsTable)
+         .where(eq(clinicsTable.approved, false))) as any[];
    },
- 
+
    approveClinic: async (clinicId: string) => {
-     const res = await pool.query(
-       "UPDATE clinics SET approved = true WHERE clinic_id = $1 AND approved = false",
-       [clinicId]
-     );
-     return res.rowCount === 1;
+      const res = await db
+         .update(clinicsTable)
+         .set({ approved: true })
+         .where(
+            and(
+               eq(clinicsTable.clinic_id, clinicId),
+               eq(clinicsTable.approved, false)
+            )
+         )
+         .returning();
+
+      return res.length === 1;
    },
 
    getClinicFromCode: async (clinicCode: string) => {
-     const res = await pool.query(
-       "SELECT * FROM clinics WHERE clinic_code = $1", [clinicCode]
-     );
-     return res.rows[0] as Clinic;
+      const res = await db
+         .select()
+         .from(clinicsTable)
+         .where(eq(clinicsTable.clinic_code, clinicCode))
+         .limit(1);
+
+      return res[0] as Clinic;
    },
- 
+
+   getAllClinics: async (): Promise<Clinic[]> => {
+      return (await db.select().from(clinicsTable)) as any[];
+   },
+
    addClinic: async (params: AddClinicParams) => {
-     let { name, email, type, address, telephone, website, tiktok, instagram, facebook, date, clinic_code } = params;
-     const res = await pool.query(
-       "INSERT INTO clinics (clinic_id, name, type, email, address, telephone, website, instagram, facebook, tiktok, date_joined, approved, clinic_code) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)",
-       [
-         uuid.clinicid(),
-         name,
-         type,
-         email,
-         address,
-         telephone,
-         website || '',
-         instagram || '',
-         facebook || '',
-         tiktok || '',
-         date,
-         false,
-         clinic_code
-       ]
-     );
-     return res.rowCount === 1;
+      const {
+			name,
+			email,
+			type,
+			address,
+			telephone,
+			website,
+			tiktok,
+			instagram,
+			facebook,
+			date,
+			clinic_code
+      } = params;
+
+      const res = await db
+         .insert(clinicsTable)
+         .values({
+            clinic_id: uuid.clinicid(),
+            name,
+            type,
+            email,
+            address,
+            telephone,
+            website: website || "",
+            instagram: instagram || "",
+            facebook: facebook || "",
+            tiktok: tiktok || "",
+            date_joined: date,
+            approved: false,
+            clinic_code
+         })
+         .returning();
+
+      return res.length === 1;
    },
- 
+
    updateClinic: async (params: AddClinicParams) => {
-     let { name, email, type, address, telephone, website, tiktok, instagram, facebook, date, clinic_code } = params;
-     const res = await pool.query(
-       "UPDATE clinics SET name = $1, type = $2, email = $3, address = $4, telephone = $5, website = $6, instagram = $7, facebook = $8, tiktok = $9, date_joined = $10 WHERE clinic_code = $11 AND approved = true",
-       [
+      const {
          name,
-         type,
          email,
+         type,
          address,
          telephone,
-         website || '',
-         instagram || '',
-         facebook || '',
-         tiktok || '',
+         website,
+         tiktok,
+         instagram,
+         facebook,
          date,
          clinic_code
-       ]
-     );
-     return res.rowCount === 1;
+      } = params;
+
+      const res = await db
+         .update(clinicsTable)
+         .set({
+            name,
+            type,
+            email,
+            address,
+            telephone,
+            website: website || "",
+            instagram: instagram || "",
+            facebook: facebook || "",
+            tiktok: tiktok || "",
+            date_joined: date
+         })
+         .where(
+            and(
+               eq(clinicsTable.clinic_code, clinic_code),
+               eq(clinicsTable.approved, true)
+            )
+         )
+         .returning();
+
+      return res.length === 1;
    }
- };
- 
+};
