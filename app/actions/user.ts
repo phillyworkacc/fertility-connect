@@ -63,6 +63,42 @@ export async function sendJourneyToParahEbookEmail (transactionId: string): Prom
    }
 }
 
+export async function sendJourneyToParahEbookEmailPromo (): Promise<string | boolean> {
+   try {
+      const session = await getServerSession(authOptions);
+      if (!session) return "User does not exist";
+      if (!session.user) return "User does not exist";
+
+      const user = await getCurrentUser(session.user.email!);
+      if (user == false) return "User does not exist";
+
+
+      const emailBody = await render(JourneyToParahEBookEmail({
+         username: user.username
+      }))
+
+      const { data, error } = await resend.emails.send({
+         from: "Fertility Connect <fertilityconnect@thefertilityconnect.com>",
+         to: [user.email],
+         subject: "Your Journey to Parah eBook Purchase",
+         html: emailBody,
+         attachments: [{
+            filename: "ebook.pdf",
+            content: fs.readFileSync(path.join("public", "assets", "Okadaepub.pdf"))
+         }]
+      })
+
+      if (error) {
+         return "Failed to send email";
+      } else {
+         return true;
+      }
+   } catch (err) {
+      console.error(err);
+      return "Failed to send email";
+   }
+}
+
 export async function checkUserLoggedIn (): Promise<boolean> {
    return new Promise (async (resolve) => {
       const session = await getServerSession(authOptions);

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { buyEbookPayment, verifyPayment } from '../actions/payments';
 import { useRouter } from 'next/navigation';
 import { getFluttterwaveSearchParams } from '@/utils/getFlutterwaveSearchParams';
-import { sendJourneyToParahEbookEmail } from '../actions/user';
+import { sendJourneyToParahEbookEmail, sendJourneyToParahEbookEmailPromo } from '../actions/user';
 import BackToHome from '@/components/back-to-home/back-to-home';
 
 export default function JourneyToParahEBook() {
@@ -43,6 +43,21 @@ export default function JourneyToParahEBook() {
       }
    }
 
+   // PROMO FOR SEPTEMBER FOR USERS TO ACCESS EBOOK FOR FREE
+   const [promoAccepted, setPromoAccepted] = useState(false);
+   async function promoGetEbook () {
+      try {
+         let sentEmail = await sendJourneyToParahEbookEmailPromo();
+         if (typeof sentEmail == "string") {
+            alert(sentEmail);
+         } else {
+            setPromoAccepted(true);
+         }
+      } catch (err) {
+         alert("Failed to get eBook");
+      }
+   }
+
    useEffect(() => {
       const { status, transactionId, txRef } = getFluttterwaveSearchParams(window);
       if (status !== "" && transactionId !== "" && txRef !== "") {
@@ -69,6 +84,18 @@ export default function JourneyToParahEBook() {
 
 			<main className="content">
 
+            {(promoAccepted) && (
+               <section className="e-book-payment-info">
+                  <div className="page-container">
+                     <div className="success-payment">
+                        <div className="text-c-l bold-600 success">Promo Claimed</div>
+                        <div className="text-c-sm">Enjoy the promo. {session?.user?.name}!</div>
+                        <div className="text-c-sm">{session?.user?.name}, you should receive an email with the eBook shortly.</div>
+                     </div>
+                  </div>
+               </section>
+            )}
+
             {(paidForBook == undefined) ? <></> : <>
                <section className="e-book-payment-info">
                   <div className="page-container">
@@ -81,7 +108,7 @@ export default function JourneyToParahEBook() {
 
                      {(paidForBook == true) ? <>
                         <div className="success-payment">
-                           <div className="text-c-l bold-600 success">Payment Successfull</div>
+                           <div className="text-c-l bold-600 success">Payment Successful</div>
                            <div className="text-c-sm">{session?.user?.name}, your payment for the Journey To Parah E-Book was successful, you should receive an email with the book shortly.</div>
                         </div>
                      </> : <></>}
@@ -107,11 +134,14 @@ export default function JourneyToParahEBook() {
                         <div className="details">
                            <BackToHome url='/'>Back to Home</BackToHome>
                            <div className="text-c-xl bold-600 name">Journey To Parah</div>
-                           <div className="text-c-l bold-700 price">$5.00</div><br />
+                           <div className="text-c-l bold-700 price">FREE PROMO</div>
+                           <div className="text-c-s bold-500 price">Promo lasts for the next 30 days, get it while it lasts.</div><br />
+                           {/* <div className="text-c-l bold-700 price">$5.00</div><br /> */}
 
                            {(error.status) ? <div className='error text-c-sm bold-600'>{error.text}</div> : <></>}
                            {(session?.user?.email) ? <>
-                              <button onClick={buyButton}>Buy Now</button>
+                              <button onClick={promoGetEbook}>Get eBook</button>
+                              {/* <button onClick={buyButton}>Buy Now</button> */}
                            </>: <>
                               <button onClick={() => router.push("/signup")}>Sign Up to Buy eBook</button>
                            </>}
