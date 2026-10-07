@@ -45,7 +45,7 @@ export async function sendJourneyToParahEbookEmail (transactionId: string): Prom
                html: emailBody,
                attachments: [{
                   filename: "ebook.pdf",
-                  content: fs.readFileSync(path.join("public", "assets", "Okadaepub.pdf"))
+                  content: "public/assets/Okadaepub.pdf"
                }]
             })
          
@@ -68,15 +68,15 @@ export async function sendJourneyToParahEbookEmailPromo (): Promise<string | boo
       const session = await getServerSession(authOptions);
       if (!session) return "User does not exist";
       if (!session.user) return "User does not exist";
-
+      
       const user = await getCurrentUser(session.user.email!);
       if (user == false) return "User does not exist";
-
-
+      
+      
       const emailBody = await render(JourneyToParahEBookEmail({
          username: user.username
       }))
-
+      
       const { data, error } = await resend.emails.send({
          from: "Fertility Connect <fertilityconnect@thefertilityconnect.com>",
          to: [user.email],
@@ -84,11 +84,12 @@ export async function sendJourneyToParahEbookEmailPromo (): Promise<string | boo
          html: emailBody,
          attachments: [{
             filename: "ebook.pdf",
-            content: fs.readFileSync(path.join("public", "assets", "Okadaepub.pdf"))
+            content: "public/assets/Okadaepub.pdf"
          }]
       })
 
       if (error) {
+         console.error(error)
          return "Failed to send email";
       } else {
          return true;
