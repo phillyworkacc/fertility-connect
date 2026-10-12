@@ -9,10 +9,10 @@ import { reverseString } from "@/utils/string";
 import { render } from "@react-email/components";
 import { ResetPasswordEmail } from "@/emails/forgotPwd";
 import { Resend } from "resend"
-import JourneyToParahEBookEmail from "@/emails/eBookEmail";
 import { EBookDB } from "@/db/ebook";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
+import JourneyToParahEBookEmail from "@/emails/eBookEmail";
 import SubscribedUserEmail from "@/emails/subscribedEmail";
 import PurchasedCourseEmail from "@/emails/purchasedCourse";
 import ChangeEmailVerificationEmail from "@/emails/changeEmailVerificationCode";
@@ -37,6 +37,9 @@ export async function sendJourneyToParahEbookEmail (transactionId: string): Prom
             const emailBody = await render(JourneyToParahEBookEmail({
                username: user.username
             }))
+
+            const pdfPath = path.join(process.cwd(), "public", "assets", "Okadaepub.pdf");
+            const pdfBuffer = await fs.readFile(pdfPath);
          
             const { data, error } = await resend.emails.send({
                from: "Fertility Connect <fertilityconnect@thefertilityconnect.com>",
@@ -45,7 +48,8 @@ export async function sendJourneyToParahEbookEmail (transactionId: string): Prom
                html: emailBody,
                attachments: [{
                   filename: "ebook.pdf",
-                  content: "public/assets/Okadaepub.pdf"
+                  content: pdfBuffer,
+                  contentType: "application/pdf",
                }]
             })
          
@@ -76,6 +80,9 @@ export async function sendJourneyToParahEbookEmailPromo (): Promise<string | boo
       const emailBody = await render(JourneyToParahEBookEmail({
          username: user.username
       }))
+
+      const pdfPath = path.join(process.cwd(), "public", "assets", "Okadaepub.pdf");
+      const pdfBuffer = await fs.readFile(pdfPath);
       
       const { data, error } = await resend.emails.send({
          from: "Fertility Connect <fertilityconnect@thefertilityconnect.com>",
@@ -84,7 +91,8 @@ export async function sendJourneyToParahEbookEmailPromo (): Promise<string | boo
          html: emailBody,
          attachments: [{
             filename: "ebook.pdf",
-            content: "public/assets/Okadaepub.pdf"
+            content: pdfBuffer,
+            contentType: "application/pdf",
          }]
       })
 
