@@ -136,6 +136,15 @@ export default function JourneyToParahEBook() {
                            <div className="text-c-xl bold-600 name">Journey To Parah</div>
                            <div className="text-c-l bold-700 price">FREE PROMO</div>
                            <div className="text-c-s bold-500 price">Promo lasts for the next 30 days, get it while it lasts.</div><br />
+                           <div className="text-c-s bold-500 price">
+                              Buy on Amazon Kindle{": "}
+                              <Link 
+                                 href='https://a.co/d/03agvfPH' target="_blank"
+                                 className='visible-link'
+                              >
+                                 Journey to Parah on Amazon
+                              </Link>
+                           </div><br />
                            {/* <div className="text-c-l bold-700 price">$5.00</div><br /> */}
 
                            {(error.status) ? <div className='error text-c-sm bold-600'>{error.text}</div> : <></>}
