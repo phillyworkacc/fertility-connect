@@ -38,7 +38,7 @@ export async function sendJourneyToParahEbookEmail (transactionId: string): Prom
                username: user.username
             }))
 
-            const pdfPath = path.join(process.cwd(), "public", "assets", "Okadaepub.pdf");
+            const pdfPath = path.join(process.cwd(), "public", "assets", "JourneyToParahBook.pdf");
             const pdfBuffer = await fs.readFile(pdfPath);
          
             const { data, error } = await resend.emails.send({
@@ -81,7 +81,7 @@ export async function sendJourneyToParahEbookEmailPromo (): Promise<string | boo
          username: user.username
       }))
 
-      const pdfPath = path.join(process.cwd(), "private", "ebooks", "Okadaepub.pdf");
+      const pdfPath = path.join(process.cwd(), "private", "ebooks", "JourneyToParahBook.pdf");
       const pdfBuffer = await fs.readFile(pdfPath);
       
       const { data, error } = await resend.emails.send({
